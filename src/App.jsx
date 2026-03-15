@@ -59,11 +59,38 @@ const RAW_NAMES = {
   // MORE INDIAN A-NAMES to boost A-ratio and Indian-ratio
   iA3: `Abhirup,Abhuday,Achalesvar,Achyutanand,Adbhut,Adhayanth,Adhinetra,Adhvaith,Adishwar,Advayanand,Agnikumar,Agniputra,Aharnish,Ajayanth,Ajitanand,Ajitpal,Akhandanand,Akhilnath,Akshaypatra,Alampata,Alokraj,Amandeep,Ambikesh,Ameyraj,Amitayu,Amoghraj,Amritpal,Amritansh,Anandrup,Anantarup,Andal,Aneekrit,Anilaabh,Anilkumar,Aniruddh,Anjanikumar,Ankitraj,Anshveer,Antardhan,Anubhav,Anugrah,Anukalp,Anupam,Anuraag,Anuvansh,Apurvanand,Aranyak,Archish,Arijeet,Arinav,Arindham,Arkesh,Arnavraj,Arpandeep,Arthanari,Arundhati,Ashokraj,Ashokvardhan,Ashvinkumar,Ashuddh,Atharvan,Atimanyu,Atishvir,Avadhesh,Avigyan,Avikshith,Avinandan,Avyayansh,Ayodhyanath,Ayurved,Ayushmaan,Azhagi`.split(","),
 
-  // MORE INDIAN NON-A NAMES
-  iN3: `Bahubali,Balakrishna,Balasubramani,Bhadresh,Bhuvanesh,Bibhuti,Brijmohan,Chanakya,Chandrahas,Chandrakant,Chirantan,Dakshinamurthy,Damodhar,Debashish,Devendra,Dhananjay,Dharanidhar,Dharmesh,Dheeraj,Digvijay,Dinkar,Divyanshu,Dwaipayan,Ekambar,Eklavya,Gajanand,Gangadhar,Girivardhana,Gokulnath,Gopikrishna,Gunvant,Gyanesh,Hamsavahana,Hansaraj,Harishchandra,Hemendra,Hridaynath,Ilamaran,Indresh,Ishwardutt,Jagatjit,Jagmohan,Jaishankar,Jaldhar,Jaswinder,Jayadeep,Jayakrishna,Jitendra,Jugalkishor,Kalanidhi,Kalyanasundaram,Kamalesh,Kamalnath,Kanishk,Kartikeya,Kaushalyendra,Kesavanand,Kirtivardhan,Kishanlal,Krishnadev,Kshetrapati,Kumaresh,Kumaran,Lakshminath,Lalitmohan,Liladhar,Lokeshwar,Madanmohan,Madhavkrishna,Mahendranath,Maheswaran,Maitreyanath,Makarand,Manivannan,Manojit,Meghnad,Mithilesh,Mohankrishna,Mritunjay,Mukund,Muralidhar,Nageshwar,Nakulesh,Nandkishor,Narasimha,Narendranath,Naveenchandra,Neelakantha,Nimeshwar,Niranjan,Nitin,Omeshwar,Padmanabh,Paramanand,Paritosh,Piyushkant,Prabhakaran,Pradyumna,Pradeepkumar,Prajesh,Pramod,Prashil,Prithvinath,Purnanand,Raghavendra,Raghuvanshi,Rajivlochan,Ramakrishna,Ramnarayan,Rangaswamy,Ratnesh,Ravikiran,Riddhiman,Rituparn,Rohitashwa,Rudraprasad,Sachidanand,Sadashiv,Sagardeep,Sahajvir,Samarthak,Samudra,Sandeepan,Sanjivkumar,Santoshkumar,Sarangpani,Satyanarayan,Shanmugham,Sharvaanand,Shivkumar,Shreemant,Shrikant,Shripati,Siddhanath,Sitakant,Somnath,Subhashchandra,Sukhvinder,Sundaresh,Suryakant,Swarnendu,Taponidhi,Tejeshwar,Trilokesh,Tusharkant,Umashankar,Upendranath,Vaibhavsree,Vallabh,Vasudevan,Vedprakash,Vidhyadhar,Vijayashekhar,Vinayakram,Vireshwar,Vishwamitra,Vyankatesh,Yogindra,Yudhajit`.split(","),
 
   // ADDITIONAL INDIAN A-NAMES (Sanskrit/uncommon)
   iA4: `Abhinandan,Adhidev,Adhimukti,Adhyansh,Agneeshwar,Ahamkar,Ajaydev,Akhandpratap,Akhyaansh,Akshaybodh,Alankrit,Amoghsiddh,Amritansh,Anantdev,Anashvar,Aneekrit,Angirasa,Anirdesh,Anjaneya,Ankurprasad,Antarvedi,Anubhuti,Anugyan,Anupamesh,Aparesh,Archana,Arijitdev,Arinav,Arindham,Arkesh,Armaan,Arnavdeep,Arpanveer,Arthanari,Aruneshwar,Ashokdeep,Ashoknath,Ashvinkumar,Atharvanand,Atimanyu,Atishveer,Avadhkishor,Avighna,Avikshitesh,Avinandan,Avyansh,Ayodhyanand,Ayurvardhan,Azhagan`.split(","),
+
+  // EXPANSION: Indian A-names
+  iA5: `Abhijnan,Abhijeet,Abhilekh,Abhimand,Abhineet,Abhirath,Abhisek,Abhyudai,Achalesvar,Achintan,Achyutam,Adambara,Adeshwar,Adheena,Adhikari,Adhimukta,Adhineta,Adhirath,Adishvar,Advaitam,Agnikund,Agnirath,Agnishvar,Ahalyesh,Ahimkar,Ajamil,Ajatashatru,Ajaypal,Ajitabh,Ajitdev,Ajitendra,Ajitesh,Akhandmani,Akhilband,Akshadhara,Akshatam,Akshobhya,Alabhya,Alamgir,Alankaran,Alaukik,Amalesh,Amanpreet,Amareshwar,Amarnath,Ambikeya,Amitayu,Amoghavarsh,Amritbindu,Amriteshwar,Amritpal,Anagha,Analekh,Anandamayi,Anandmay,Anandrup,Anantpur,Anantram,Anashwar,Anbazhagan,Aneekrit,Angaraj,Angiras,Animish,Anirvan,Anivrit,Ankitam,Annadurai,Annadata,Antardhan,Anubhavesh,Anugraha,Anukampa,Anumit,Anupam,Anuradhesh,Anurakta,Anushaasan,Anuvrat,Aparajitesh,Apurvam,Aranyak,Archakam,Archishman,Arijitam,Arimardana,Arindamesh,Arivoli,Arjunesh,Arkadeva,Arnavdeep,Arpanveer,Arthasiddhi,Arunodaya,Ashmaataka,Ashokvardhan,Ashutoshraj,Ashwathaman,Ashwinraj,Atharvanand,Athirath,Atishvaresh,Atmadarshan,Atmanand,Avadhesh,Avadhut,Avighnam,Avikalpana,Avimuktesh,Avyayam,Ayodhyapati,Ayushmat`.split(","),
+  // EXPANSION: Indian non-A names
+  iN5: `Bahulesh,Baikunth,Bakul,Balachandran,Balagopal,Balakrishnan,Balamurali,Balaraj,Balaraman,Baldev,Balkrishna,Balvant,Balveer,Bandhul,Bankebihari,Bankim,Bansidhar,Basant,Bhadra,Bhagavan,Bhagirath,Bhagyaraj,Bhairav,Bhajan,Bhaktaraj,Bhanudas,Bhanupriya,Bhaskaran,Bhasvar,Bhaumik,Bhavdeep,Bhavinesh,Bhimsen,Bholanath,Bhoomesh,Bhoopat,Bhrigupati,Bhudev,Bhupendra,Bhushan,Bijay,Bijoy,Bikram,Bimal,Bindusar,Birbal,Bishan,Brahmdev,Brahmanand,Brajesh,Brijkishor,Brijlal,Chandradev,Chandrakishor,Chandramohan,Chandranath,Chandraprakash,Chandrasen,Chandravardhan,Charandeep,Charuchandra,Charuvrat,Chaturbhuj,Chidambar,Chidanand,Chinmayanand,Chinnaswamy,Chiranjeev,Chitrakoot,Chitranjan,Chitresh,Dagdu,Dakshraj,Damodar,Dandapani,Darpan,Dayakara,Dayasagar,Debajyoti,Debasish,Deepankar,Deepesh,Deshraj,Devadatta,Devaguru,Devajit,Devakant,Devakinandan,Devamitra,Devanandan,Devaprasad,Devarajan,Devashish,Devavrat,Devendra,Deviprasad,Devkant,Devkinandan,Devnarayan,Dhananjay,Dhanapati,Dhanaraj,Dhaneshwar,Dhanisht,Dhanurdhar,Dhanvant,Dharmabandhu,Dharmadeva,Dharmaditya,Dharmapala,Dharmaveer,Dhatri,Dhirendra,Dhyanesh,Digambar,Digvijayi,Dilipkumar,Dinanath,Dipankar,Divyajyoti,Divyangshu,Drishtikona,Durgadatta,Durgaprasad,Durjay,Dushyant,Dwarakanath,Dyutiman,Ekalavya,Eknath,Gangadharan,Gangaram,Gangeshwar,Garudadwaj,Gaurishankar,Ghanashyam,Giribaala,Giridhari,Girdhari,Gopaldas,Gopalakrishnan,Gopinath,Gorakhnath,Goverdhan,Govindraj,Gulab,Gulabchand,Gunavant,Gurdayal,Gurdip,Gurnam,Gurudatt,Gurudev,Gurumurthy,Guruprasad,Gyandeep,Gyaneshwar,Hanumant,Harekrishna,Haridev,Harikrishna,Harilal,Harinarayan,Hariprasad,Hariram,Harishankar,Harshavardhana,Hemkant,Hemkumar,Himadri,Hiranyak,Hridayesh,Hridaynath,Indivar,Indradeep,Indrakant,Indraneel,Ishvardas,Jagadeep,Jagadish,Jaganmohan,Jagannath,Jagdish,Jagjivan,Jagmohan,Jagpal,Jaigopal,Jaikishor,Jaimini,Jaiprakash,Jaivardhan,Janmejay,Jaspal,Jaswant,Jawahar,Jayachandran,Jayagopal,Jayakumar,Jayaprakash,Jayashankar,Jayawardhan,Jigesh,Jitendranath,Jivanraj,Jivitesh,Jogeshwar,Joshila,Jugalkishore,Jyotindra,Jyotiprakash,Jyotirmay,Jyotirmayi,Kaivalyanath,Kaleshwar,Kalikrishna,Kaliprasad,Kalyanraj,Kamakshi,Kamalanayan,Kamalnayan,Kameshwar,Kanhaiyalal,Kanthimathi,Kapildev,Karnamrit,Karneshwar,Kartikesh,Karunakaran,Karunanidhi,Kashiram,Kashinath,Kaushlesh,Kedareshwar,Keshavraj,Ketakiprasad,Kirtiman,Kishorilal,Kowshik,Krishanpal,Krishnakumar,Krishnamurthy,Krishnaswamy,Krishnendu,Kshetrapal,Kuladhar,Kumaraswamy,Kumudesh,Kunalraj,Kusumesh,Lakshmanraj,Lakshmikant,Lakshminarayan,Lalitaditya,Laliteshwar,Laxmikant,Lokeshwar,Lokprakash,Lokvir,Madanpal,Madhavachary,Madhavdas,Madhavesh,Madhuraj,Mahabir,Mahadevan,Mahakant,Mahamritunjay,Mahanand,Maharaj,Mahashay,Mahavir,Mahendrakumar,Maheshchandra,Maheshkumar,Mahidhar,Mahipat,Mahodaya,Mangaldev,Mangaleshwar,Manibhushan,Manikandan,Manikchand,Maniram,Manishwar,Manjunath,Manoharpal,Manonmani,Manoranjan,Mansukh,Manthanesh,Meghraj,Mihirkumar,Milindjyoti,Mohanraj,Mohinder,Moolchand,Motilal,Mrigendra,Mrigeshwar,Mukeshwar,Muktanand,Mukundaraj,Muraleedhar,Muralimohan,Muthuvel,Nachiket,Nagabhushana,Nagarajan,Nageswaran,Nageshwaran,Nakuleshwar,Nalinkant,Nalinaksha,Namdev,Nandakumar,Nandgopal,Nandkishore,Narayanamurthy,Narendrakumar,Narottamdas,Narsingh,Natarajan,Navaratna,Navneet,Nayanesh,Neelakantan,Neelambar,Nilambara,Nilamadhava,Nilmani,Nirankush,Nirbhay,Nirdosh,Nirmalkumar,Nirvanesh,Nishikant,Nityagopal,Nityasundar,Nrisimha,Omeshwar,Omprakash,Padmakant,Padmanabhan,Palaniswamy,Panchakshara,Panduranga,Pankajakshan,Paramananda,Parashuram,Parmatma,Parusharaman,Parvataraj,Pattabhiraman,Pavankumar,Pillaiyar,Pitambara,Prabaleshwar,Prabhakareshwar,Prabhudayal,Prachetas,Pradyuman,Prajapati,Prakhyat,Pramodkumar,Pranavesh,Praneshwar,Prasannavadan,Prasunamba,Prathamesh,Pratibimba,Pravinkumar,Premkumar,Prithvipal,Priyavrat,Purandareshwar,Purnananda,Purnendu,Purshottamdas,Pushpadanta,Radhakrishnan,Radheshyam,Raghuraj,Raghuveeran,Rajagopalan,Rajanikant,Rajeshkumar,Rajeshwaran,Rajivalochan,Rajkishore,Rajmohan,Rajvardhan,Ramakant,Ramanand,Ramanaresh,Ramasubramani,Ramchandran,Rameshbabu,Rameshchandra,Ramgopal,Ramkishor,Ramprakash,Ramprasad,Ramswaroop,Ranajit,Ranchhodlal,Ranjitsinh,Raseshwar,Rathinam,Ratnadeep,Ratnakant,Ratnakar,Ravikant,Raviprakash,Ravishankar,Ritambhara,Rudrapratap,Rupeshwar,Sachidananda,Sadanand,Sagarika,Sahajvir,Sahasrajit,Sailendranath,Sakharam,Samarthvir,Samarender,Sambashiva,Samraateshwar,Samudragupta,Sanatkumar,Sanchiteshwar,Sandipkumar,Sanghamitra,Sanjivkumar,Sankaranarayanan,Sankareshwar,Sanmukh,Santatirtha,Santoshkumar,Sarangdhara,Saravanan,Sarveshwar,Saswat,Satagopa,Satishchandra,Satyabrata,Satyajeet,Satyanarayan,Satyavrat,Savitanand,Senthilkumar,Seshadri,Shankaranarayanan,Shantanand,Shantiprakash,Sharvaanand,Shashikant,Shatrujet,Sheshkumar,Shikhandini,Shilpakumar,Shivanand,Shivprasad,Shivraj,Shivshakti,Shobhiteshwar,Shreenivasan,Shreshtha,Shrikant,Shriprakash,Shrirang,Shrivardhan,Shriyash,Shubhendu,Shyamsundara,Siddeshwar,Siddhanteshwar,Sivakumar,Sivasubramani,Somasundaram,Somnath,Sooryakant,Srikrishna,Srinivasan,Sriranganath,Srivatsan,Subhajit,Subhashchandra,Subhasish,Subramanyam,Sudarshana,Sudhanshu,Sukhdev,Sukhlal,Sukumar,Sumaneshwar,Sumanthra,Sundarrajan,Sundramurthy,Surajprakash,Surendranath,Sureshkumar,Suryanarayana,Suryaprakash,Sushantraj,Swaminathan,Swapneshwar,Swaroop,Tanmaydev,Tapaskumar,Tejaswinath,Thakurdas,Thamaraikannan,Thandavamurthy,Thangavelu,Thirumalaianand,Thiruvenkatam,Tribhuvan,Trilochana,Trimurti,Tripurari,Trishankhu,Tulsidasa,Tyageshwar,Udayakumar,Uddhaveshwar,Ujjaleshwar,Umapathi,Umeshchandra,Uthpalaksha,Uttameshwar,Vaasudeva,Vaibhavraj,Vairochana,Vaisampayana,Vajreshwar,Vallabhbhai,Vamadevan,Varadharaj,Varshanand,Vasanthakumar,Vasishtha,Vatsarajan,Vedprakash,Venkataramanan,Venkateshwara,Venugopal,Vetrichelvan,Vibhakara,Vibhutibushan,Vidyacharan,Vidyapati,Vidyaranya,Vijayanand,Vijayashekhar,Vijayendranath,Vikasindhuja,Vikramjeet,Vinaykumar,Vindhyeshwar,Vinodkumar,Virabhadra,Viraraghavan,Vishwakarma,Vishwanathan,Vishweshwarayya,Vittaldas,Vitthalrao,Vivasvat,Vivekanand,Vrajlal,Vyomkesh,Yadavendra,Yadunath,Yajnadatta,Yajnavalkya,Yamunesh,Yashasvikumar,Yashvardhan,Yogananda,Yogeshwar,Yogindranath,Yugandhar,Yuvaraj,Yuvashekhar`.split(","),
+  // EXPANSION: Arabic/Persian A-names
+  aA5: `Abdulrahman,Abdulkarim,Adeel,Affan,Afshar,Ahad,Akeel,Akram,Alauddin,Alborz,Alireza,Almahdi,Altamash,Amaan,Amjad,Aqeel,Ardalan,Arham,Armaghan,Arshadali,Artin,Ashfaq,Ashkan,Atabak,Avicenna,Ayaan,Azarmehr,Azeem,Azfar,Azim,Azmat,Azzam`.split(","),
+  // EXPANSION: Arabic/Persian non-A names
+  aN5: `Bahauddin,Bahadur,Bakhtiar,Barzan,Basir,Behzad,Bilqis,Borhan,Changiz,Dabir,Daud,Dilawar,Dilshad,Ebrahim,Ehtesham,Elham,Erfan,Eskandar,Fahim,Fakhar,Faraz,Fardeen,Farhan,Farouk,Fawad,Feroze,Ferzan,Firdaus,Firooz,Ghulam,Habibullah,Hafeez,Hameed,Hammad,Hassan,Hidayat,Hikmat,Humayun,Hussain,Ihsan,Inayat,Iqtidar,Irshad,Ismat,Izhar,Jafar,Jaleel,Javaid,Jawad,Javed,Kabir,Kaiwan,Kaleem,Kambiz,Kareem,Kasra,Kazim,Khaled,Khashayar,Khurshid,Koorosh,Liakat,Lutfullah,Mahbub,Mahmood,Manzar,Maqbool,Maqsood,Masroor,Mateen,Mazhar,Mehboob,Mehdi,Mehrab,Misbah,Moazzam,Mohsen,Mojtaba,Morshed,Moshfegh,Mozaffar,Murtaza,Naseer,Naushad,Nawab,Nazar,Niloufar,Nouman,Nusrat,Parvez,Pervez,Qamar,Qasim,Raees,Raheel,Rameez,Rashed,Rauf,Riaz,Ruhollah,Rustam,Saadullah,Saboor,Sadruddin,Saeed,Safdar,Sajjad,Salahuddin,Sardar,Sarfraz,Shahbaz,Shahid,Shakeel,Shakil,Shamshad,Shehzad,Shoaib,Shuja,Sikandar,Sulaiman,Syed,Tahsin,Talat,Taufiq,Tawfik,Toufiq,Usman,Waleed,Waqas,Yaqub,Zafar,Zahoor,Zeeshan,Zulfiqar`.split(","),
+  // EXPANSION: African names
+  fN5: `Abena,Abubakar,Adama,Adamu,Adewuyi,Adongo,Afikpo,Afolarin,Agbor,Aguda,Ajayi,Akande,Akintunde,Akorede,Alemayehu,Amadou,Amaka,Antwi,Babajide,Babatunde,Bankole,Bemba,Biram,Bitrus,Boateng,Chidubem,Chiemeka,Chinedu,Chinonso,Chukwudi,Chukwuka,Chukwuemeka,Dada,Danquah,Demba,Desta,Diallo,Dike,Dumebi,Ebenezer,Efosa,Ekow,Ekwueme,Enitan,Essien,Etim,Ewuare,Eyitayo,Ezinne,Fadahunsi,Fapohunda,Folorunsho,Foluke,Gbenga,Godswill,Ibeabuchi,Ibrahim,Idowu,Ifeanyi,Ifeoluwa,Ikechukwu,Ikemefuna,Ikenna,Immanuel,Isioma,Izuchukwu,Jibril,Jideofor,Kalu,Kangni,Kayode,Kelechi,Kenechukwu,Koffi,Kolawole,Koranteng,Kwadwo,Kwasi,Lanre,Machel,Madu,Mandla,Mensah,Modupe,Moussa,Mthunzi,Mudashiru,Mustapha,Mwamba,Nduka,Ngozi,Nkemdirim,Nnaemeka,Nneka,Nwachukwu,Nwankwo,Nwosu,Obafemi,Obaseki,Obioma,Ochieng,Odinaka,Odion,Oghene,Okechukwu,Okwudili,Olabisi,Olabode,Oladipo,Oladokun,Olalekan,Olamide,Olanrewaju,Olatunde,Olawale,Olubunmi,Olufemi,Olukayode,Olumuyiwa,Olusola,Oluwatobi,Oluwatobiloba,Omolara,Omoruyi,Onyeka,Osagbovo,Osagie,Osamudiamen,Osarenkhoe,Osarhiemen,Ositadinma,Owusu,Oyewale,Sanusi,Seun,Sibusiso,Sipho,Siyabonga,Taiwo,Tamuno,Temidayo,Temitope,Thabo,Thulani,Tochukwu,Tunde,Uchechukwu,Udochukwu,Ugochukwu,Uzochukwu,Wanjiru,Yeboah,Yinka,Yusuf,Zainab,Zamani,Zanele,Zinhle,Zola,Zubairu`.split(","),
+  // EXPANSION: Global A-names
+  gA5: `Aamund,Achille,Achill,Adalberto,Adalric,Adalwin,Adolphe,Agapito,Agostinho,Agoston,Agustin,Aimon,Alarik,Albano,Alberic,Albertino,Alcander,Alcuin,Aldebrand,Aldobrando,Aldous,Aleksandar,Alembert,Alerion,Alessio,Alfonse,Alfonsino,Algernon,Alirio,Alistair,Almeric,Almiro,Alois,Alonzo,Alphonso,Altan,Aluisio,Alvino,Amadis,Amadou,Amalric,Amancio,Amaranto,Amato,Amauricio,Ambroise,Americo,Amias,Amiell,Amintore,Amleto,Amnon,Anacleto,Anastasio,Androcles,Angelino,Angilbert,Aniceto,Anselme,Antero,Antigonus,Antonino,Apelles,Apollinaire,Aquilino,Araldo,Arbogast,Arcadio,Arcangelo,Archibaldo,Archimedes,Aretino,Argento,Argilao,Ariston,Arkady,Arminio,Arnaldo,Arnfried,Arnolfo,Arsenio,Artemon,Arvid,Asterion,Astorik,Athanase,Atilio,Atlante,Auberon,Auguste,Aureliano,Aurelien,Aurelio,Ausonio,Avigdor,Avraham,Axl`.split(","),
+  // EXPANSION: Global non-A names + architect names
+  gN5: `Baldassare,Baldovino,Baltasar,Barnabe,Bartolome,Basilio,Baudouin,Benedetto,Bengt,Benicio,Berardo,Berengario,Berislav,Bernabe,Bertil,Bertolt,Bertrand,Bjarke,Bjarne,Blagoj,Blasius,Bogdan,Bogomil,Bohumil,Boleslaw,Bonifacio,Borivoj,Borislav,Branko,Bronislav,Buenaventura,Caetano,Calogero,Camillo,Candido,Caradoc,Carloman,Casimiro,Cassiano,Castulo,Celestino,Cesareo,Cipriano,Cirilo,Claudio,Clemens,Clodoaldo,Columba,Cornelio,Corrado,Cosimo,Cristobal,Dagoberto,Dalibor,Dalmazio,Damiano,Dariusz,Demetrio,Desiderio,Didier,Dieter,Dietrich,Dinu,Dionisio,Dirk,Domenico,Dominik,Donato,Doroteo,Drago,Dragomir,Dragutin,Duarte,Duccio,Edgardo,Edmondo,Efisio,Efrem,Egidio,Eleuterio,Eligio,Elizandro,Emanuele,Emeric,Emidio,Emmerich,Engelbert,Eoin,Epifanio,Erasmus,Ercole,Erhard,Ermenegildo,Ernesto,Esmond,Estevao,Evaristo,Ezechiele,Fabrizio,Faliero,Fausto,Federico,Feliciano,Feodor,Ferdinando,Fernand,Fidelio,Filemon,Fioravante,Fiorenzo,Florentin,Floriano,Fortunato,Frederigo,Fulvio,Gael,Galeazzo,Galileo,Garibaldi,Gaspard,Gaspare,Gaudencio,Gauthier,Gavino,Gennaro,Geraldo,Gerardo,Gerhart,Germano,Geronimo,Gervais,Gherardo,Giacinto,Gian,Giancarlo,Gianfranco,Gianluca,Gianmarco,Gianpaolo,Giorgio,Giovanni,Girolamo,Giuliano,Giulio,Giuseppe,Goffredo,Gonzalo,Gottfried,Graciano,Gratien,Graziano,Gregorio,Guelfo,Guglielmo,Guido,Gunnar,Gustavo,Halvard,Hamilcar,Hanno,Hannibal,Harald,Hartmut,Haukur,Hector,Helge,Helmut,Heracles,Herberto,Hermenegildo,Hernando,Hildebrand,Hippolyte,Honorato,Horacio,Huberto,Hugo,Humbert,Hywel,Ignazio,Ildefonso,Inocencio,Isidoro,Istvano,Jacinto,Jacobo,Jaromir,Jaroslav,Jenaro,Jeronimo,Joachim,Jolyon,Jovian,Juanelo,Juliusz,Justino,Kaspars,Kazimierz,Kestutis,Kilian,Koloman,Konrad,Krzysztof,Kunibert,Ladislao,Ladislav,Lamberto,Lanfranco,Laszlo,Laurentiu,Leandro,Lech,Leocadio,Leonardo,Leonhard,Leopoldo,Leszek,Leuthar,Liberato,Liborio,Licio,Lionello,Livio,Lodovico,Lorcan,Lotario,Lothair,Lucano,Luciano,Ludovico,Ludvig,Lupercio,Macario,Manfredo,Marcellino,Marciano,Marcolino,Mariano,Marino,Marzio,Massimo,Mattia,Maurizio,Medardo,Melchior,Melchiorre,Metodio,Mieczyslaw,Mikolaj,Miroslav,Modesto,Narciso,Nardo,Nazario,Nestor,Nicanor,Niccolao,Niccolo,Nikolaj,Norberto,Nunzio,Odoacer,Olimpio,Onofrio,Opilio,Orazio,Orfeo,Orlando,Osvaldo,Otello,Othmar,Ottavio,Ottone,Pacifico,Pancrazio,Paolo,Pasquale,Patricio,Pellegrino,Petronio,Pierluigi,Piero,Placido,Policarpo,Pompeo,Porfirio,Primitivo,Primo,Procopio,Prudencio,Radoslav,Radovan,Raffaele,Raimondo,Rainaldo,Rainiero,Raniero,Ranulfo,Remigio,Renato,Riccardo,Rinaldo,Roberto,Rocco,Rodolfo,Rodrigo,Rogelio,Rolando,Roque,Rosario,Ruggero,Ruperto,Rutger,Sabatino,Salvatore,Sandro,Santino,Saturnino,Saverio,Sebasiano,Serafino,Severo,Sigfredo,Silvano,Silvestre,Simone,Sinibaldo,Stanislav,Stefano,Stiliano,Sulpicio,Svatopluk,Telemaco,Teodoro,Terenzio,Teseo,Tiberio,Timoteo,Torquato,Trajan,Ugo,Umberto,Urbano,Valentino,Valerio,Valeriano,Venceslao,Venerando,Venanzio,Vincenzo,Virgilio,Vitaliano,Vittorio,Vladislav,Vlastimil,Vojislav,Vratislav,Wenceslao,Wladyslaw,Wolfhart,Wratislaw,Yaropolik,Zaccaria,Zbigniew,Zdravko,Zenobio,Zenone,Zoran,Zvonimir,Tadao,Renzo,Bjarke,Moshe,Cesar,Santiago,Rem,Carlo,Eero,Balkrishna,Thom,Sverre,Gottfried,Luis,Kengo,Frei,Alvaro,Enric,Emilio,Ettore,Giancarlo,Massimiliano,Pier,Cino,Bijoy,Cedric,Zvi,Rafael,Antoni,Buckminster,Ludwig,Ieoh,Mies,Aldo,Addison,Corbu,Alvar,Kisho,Frei,Oscar,Norman,Eladio,Myron,Denys,Berthold,Eileen,Gottfried,Diebedo,Balkrishna,Hafeez,Bijoy,Laurie,Dermot,Grafton,Jorn,Kenzo,Arata,Pritzker,Sedad,Sverre,Fumihiko,Glenn,Thom,Morphosis,Wolf,Jeanne,Lacaton,Vassal,Doshi,Siza,Souto,Moneo,Nouvel,Ando,Piano,Gehry,Hadid,Murcutt,Utzon,Niemeyer,Barragan,Kahn,Aalto,Tange,Pei,Stirling,Meier,Venturi,Pritzker,Sejima,Mendes,Zumthor,Nouvel,Chipperfield,Pawson,Libeskind,Calatrava,Isozaki,Saarinen,Breuer,Jacobsen,Neutra,Schindler,Loos,Gaudi,Palladio,Vitruvius,Sinan,Brunelleschi,Bernini,Borromini,Wren,Nash`.split(","),
+  // EXPANSION: Korean names
+  kN5: `Byeongjun,Chanho,Chanwoo,Daewon,Donghyun,Dongmin,Doojin,Eunho,Geonho,Gunho,Gyumin,Hanjin,Hanul,Hasung,Heejun,Hosung,Hyeonjun,Hyukjin,Inho,Jaehoon,Jaeyoung,Jeonghoon,Jihan,Jinwoo,Joohyun,Joonho,Junghwan,Junhyung,Junwon,Kijoon,Kyungmin,Minchan,Minjin,Minwoo,Myungho,Namhoon,Sangjin,Sangwoo,Seokhoon,Seokjin,Seongmin,Seungjin,Seungmin,Seungyoon,Soojin,Sungho,Sungjin,Sungwoo,Taehwan,Taewoo,Woohyun,Woojung,Yeonho,Yongjin,Youngho,Youngjin,Youngsoo,Yuhwan`.split(","),
+
+  // EXPANSION BATCH 2: Indian A-names
+  iA6: `Aashray,Abhyuday,Achaleswar,Achyutananda,Adheendra,Adhishesha,Adithyavardhan,Adwaithya,Agneepath,Ajaymitra,Ajitabha,Akhandalamani,Aksharapatra,Akshayananda,Alamkara,Alaukikata,Amitavikram,Amoghasiddh,Amritbodh,Amriteshvara,Anandakrishna,Anandavardhana,Anantashakti,Anashvara,Aneeshvara,Angadeshvara,Anilabha,Anirdeshya,Anjaliputra,Ankiteshvara,Annaduraiprasad,Antahprabha,Anubhavananda,Anugrahesvara,Anukampavardhan,Anupameshvara,Anushasitri,Anuvriteshvara,Aparajitavikram,Apurvachandra,Aranyakeshvara,Archishvara,Aridamaneshvara,Arindameshvara,Arjunavikrama,Arkadeva,Arnaveshvara,Arpankumar,Arshadvardhan,Arthaprakasha,Aruneshvara,Ashmarathna,Ashokvardhan,Ashwinivardhan,Atharvavedananda,Athiratharaj,Atmabodheshvara,Avadheshvara,Avighnavardhan,Avikalpeshvara,Avinashraj,Avyayeshvara,Ayodhyakumar,Ayushmanraj`.split(","),
+
+
+  // CREATIVE FIGURES — first names of famous architects, artists, painters, sculptors, designers
+  // Architects: Tadao (Ando), Renzo (Piano), Alvar (Aalto filtered), Eero (Saarinen), Mies, Rem (Koolhaas), Bjarke (Ingels), Zaha (Hadid), Kengo (Kuma), Moshe (Safdie)
+  // Artists/Painters: Basquiat→Jean-Michel, Caravaggio→Michelangelo, Vermeer→Johannes, Klimt→Gustav, Rothko→Mark, Balthus, Kandinsky→Wassily, Klee→Paul filtered
+  // Sculptors: Brancusi→Constantin, Rodin→Auguste, Giacometti→Alberto, Noguchi→Isamu, Kapoor→Anish filtered
+  // Designers: Eames→Charles, Dieter (Rams), Massimo (Vignelli)
+  creativeA: `Alvar,Anselm,Antoni,Artemisia,Alberto,Auguste,Aristide,Amedeo,Andrei,Antony`.split(","),
+  creativeN: `Tadao,Renzo,Eero,Rem,Bjarke,Kengo,Moshe,Leoh,Thom,Toyo,Sverre,Enric,Balkrishna,Isamu,Christo,Constantin,Raphael,Lucian,Rufino,Ettore,Massimo,Dieter,Olafur,Subodh,Raqib,Ravinder,Tyeb,Vivan,Donatello,Giotto,Titian,Cellini,Miro,Dali,Calder,Basil,Eames`.split(","),
 };
 
 function buildNameDB() {
@@ -105,13 +132,166 @@ function buildNameDB() {
   addNames(RAW_NAMES.extraA, "Global", true);
   addNames(RAW_NAMES.extraN, "Global", false);
   addNames(RAW_NAMES.iA3, "Indian", true);
-  addNames(RAW_NAMES.iN3, "Indian", false);
   addNames(RAW_NAMES.iA4, "Indian", true);
+  // Expansion batch 1
+  addNames(RAW_NAMES.iA5, "Indian", true);
+  addNames(RAW_NAMES.iN5, "Indian", false);
+  addNames(RAW_NAMES.aA5, "Arabic/Persian", true);
+  addNames(RAW_NAMES.aN5, "Arabic/Persian", false);
+  addNames(RAW_NAMES.fN5, "African", false);
+  addNames(RAW_NAMES.gA5, "Global", true);
+  addNames(RAW_NAMES.gN5, "Global", false);
+  addNames(RAW_NAMES.kN5, "Korean", false);
+  // Expansion batch 2
+  addNames(RAW_NAMES.iA6, "Indian", true);
+  // Final batch
+  addNames(RAW_NAMES.creativeA, "Creative", true);
+  addNames(RAW_NAMES.creativeN, "Creative", false);
 
   return names;
 }
 
 const ALL_NAMES = buildNameDB();
+
+// ============================================================
+// TRAITS SYSTEM — 100 characteristics, 5 per name
+// ============================================================
+const TRAIT_MASTER = [
+  // SOUND & PHONETICS (20)
+  "Soft-sounding","Strong-sounding","Melodic","Crisp","Flowing","Bold","Gentle","Rhythmic","Punchy","Lyrical",
+  "Vowel-rich","Consonant-driven","Sibilant","Resonant","Staccato","Breathy","Sharp","Smooth","Bright-tone","Deep-tone",
+  // LENGTH & STRUCTURE (10)
+  "Short & sweet","Medium-length","Long & grand","One-syllable","Two-syllable","Three-syllable","Four-syllable","Compact","Nickname-ready","Stands-alone",
+  // FEEL & VIBE (20)
+  "Modern","Classic","Timeless","Rare","Distinctive","Traditional","Contemporary","Sophisticated","Earthy","Elegant",
+  "Warm","Cool","Regal","Understated","Commanding","Approachable","Enigmatic","Spirited","Grounded","Refined",
+  // CULTURAL ENERGY (15)
+  "Sanskrit-rooted","Vedic","Mythological","Spiritual","Literary","Artistic","Nature-inspired","Celestial","Warrior","Royal",
+  "Philosophical","Devotional","Heroic","Pastoral","Cosmopolitan",
+  // MEANING THEMES (20)
+  "Light & bright","Strength","Wisdom","Peace","Joy","Victory","Courage","Fire & energy","Earth & mountain","Water & ocean",
+  "Sky & wind","Divine","Noble","Protector","Creator","Abundance","Truth","Freedom","Love","Renewal",
+  // PRACTICAL (15)
+  "Easy worldwide","Multicultural","Cross-cultural","Globally portable","Office-friendly","Boardroom-ready","Playground-proof","Ages well","Pairs with Chikahisa","Pairs with Reddy",
+  "Great initials","Strong signature","Good for nicknames","Memorable","Conversation-starter",
+];
+
+// Deterministic hash for consistent trait assignment
+function nameHash(str, seed = 0) {
+  let h = seed;
+  for (let i = 0; i < str.length; i++) {
+    h = ((h << 5) - h + str.charCodeAt(i)) | 0;
+  }
+  return Math.abs(h);
+}
+
+function countSyllables(name) {
+  const vowels = name.toLowerCase().match(/[aeiouy]+/g);
+  return vowels ? vowels.length : 1;
+}
+
+function assignTraits(name, origin) {
+  const n = name.toLowerCase();
+  const len = name.length;
+  const syl = countSyllables(name);
+  const traits = new Set();
+  const h = nameHash(n);
+
+  // 1. LENGTH trait (always one)
+  if (len <= 4) traits.add("Short & sweet");
+  else if (len <= 6) traits.add("Medium-length");
+  else traits.add("Long & grand");
+
+  // 2. SYLLABLE trait
+  if (syl === 1) traits.add("One-syllable");
+  else if (syl === 2) traits.add("Two-syllable");
+  else if (syl === 3) traits.add("Three-syllable");
+  else traits.add("Four-syllable");
+
+  // 3. SOUND trait based on phonetic properties
+  const vowelRatio = (n.match(/[aeiou]/g) || []).length / len;
+  const lastChar = n[n.length - 1];
+  const startsVowel = /^[aeiou]/.test(n);
+  const endsVowel = /[aeiou]/.test(lastChar);
+
+  if (vowelRatio > 0.45) traits.add("Vowel-rich");
+  else if (vowelRatio < 0.3) traits.add("Consonant-driven");
+
+  if (endsVowel && vowelRatio > 0.4) traits.add("Melodic");
+  else if (/[ktp]$/.test(n)) traits.add("Crisp");
+  else if (/[mn]$/.test(n)) traits.add("Resonant");
+  else if (/[sh]$/.test(n)) traits.add("Soft-sounding");
+  else if (/[rdg]$/.test(n)) traits.add("Strong-sounding");
+  else if (/[v]$/.test(n)) traits.add("Smooth");
+  else if (/[l]$/.test(n)) traits.add("Lyrical");
+  else traits.add(h % 2 === 0 ? "Flowing" : "Bold");
+
+  // 4. VIBE/FEEL based on origin + hash
+  const vibes = origin === "Indian" ? ["Sanskrit-rooted","Vedic","Spiritual","Mythological","Traditional","Timeless","Warm","Grounded"]
+    : origin === "Arabic/Persian" ? ["Spiritual","Regal","Elegant","Commanding","Refined","Sophisticated","Timeless","Enigmatic"]
+    : origin === "African" ? ["Earthy","Spirited","Warm","Distinctive","Grounded","Heroic","Rhythmic","Bold"]
+    : origin === "Korean" ? ["Modern","Crisp","Understated","Contemporary","Cool","Compact","Refined","Approachable"]
+    : origin === "Creative" ? ["Artistic","Literary","Sophisticated","Distinctive","Conversation-starter","Enigmatic","Cool","Memorable"]
+    : ["Classic","Cosmopolitan","Elegant","Sophisticated","Literary","Refined","Distinctive","Timeless"];
+  traits.add(vibes[h % vibes.length]);
+  traits.add(vibes[(h >> 3) % vibes.length]);
+
+  // 5. MEANING THEME based on name patterns + hash
+  const themes = [];
+  if (/sun|sur|ray|ark|dit|bha|pra|tej|jyo|lux|luc|lum|ori/.test(n)) themes.push("Light & bright");
+  if (/vi[kr]|bal|vir|ran|war|raj|shah|sul|mag|vik/.test(n)) themes.push("Strength");
+  if (/ved|jn|gya|wis|vid|bodh|man|bud|sag/.test(n)) themes.push("Wisdom");
+  if (/sha[nm]|sal[im]|paz|mir|nir|aman/.test(n)) themes.push("Peace");
+  if (/nan|har|joy|bliss|mod|pra/.test(n)) themes.push("Joy");
+  if (/jay|vij|fat|jai|win/.test(n)) themes.push("Victory");
+  if (/agn|fire|rud|mar|bla/.test(n)) themes.push("Fire & energy");
+  if (/gir|par|dhr|bhum|ach|roc/.test(n)) themes.push("Earth & mountain");
+  if (/sag|var|nad|riv|sam|sin/.test(n)) themes.push("Water & ocean");
+  if (/ak[as]|sky|amb|nab|cel|ori|zep/.test(n)) themes.push("Sky & wind");
+  if (/dev|div|ish|god|lor|bha[gk]/.test(n)) themes.push("Divine");
+  if (/raj|nob|ari[s]|reg|pri|sul|mal/.test(n)) themes.push("Noble");
+  if (/rak|pal|hif|gua|abh[ay]/.test(n)) themes.push("Protector");
+  if (/shr|cre|bra|kar|kal/.test(n)) themes.push("Creator");
+  if (/sat|tru|dha[r]/.test(n)) themes.push("Truth");
+  if (/muk|az[a]|fre|swa/.test(n)) themes.push("Freedom");
+  if (/nav|new|ren|ush|aba/.test(n)) themes.push("Renewal");
+
+  if (themes.length > 0) traits.add(themes[h % themes.length]);
+  else {
+    const fallback = ["Strength","Wisdom","Courage","Noble","Renewal","Joy","Freedom","Truth","Peace","Light & bright"];
+    traits.add(fallback[h % fallback.length]);
+  }
+
+  // 6. PRACTICAL traits
+  if (len <= 5 && syl <= 2) traits.add("Easy worldwide");
+  else if (len <= 7) traits.add("Globally portable");
+  if (len <= 6 && !/[xzq]/.test(n)) traits.add("Office-friendly");
+  if (syl >= 3 || len >= 8) traits.add("Nickname-ready");
+  if (syl <= 2 && len <= 5) traits.add("Stands-alone");
+  
+  // Name-specific pairing check
+  const firstInit = name[0];
+  if (!"CR".includes(firstInit)) traits.add("Great initials");
+  if (len >= 3 && len <= 7) traits.add("Pairs with Reddy");
+  if (syl <= 3) traits.add("Pairs with Chikahisa");
+  if (len <= 6) traits.add("Memorable");
+
+  // Fill to exactly 5 with hash-selected traits
+  const traitArr = [...traits];
+  if (traitArr.length >= 5) return traitArr.slice(0, 5);
+  
+  // Pick remaining from master list using hash
+  let idx = h;
+  while (traitArr.length < 5) {
+    const candidate = TRAIT_MASTER[idx % TRAIT_MASTER.length];
+    if (!traitArr.includes(candidate)) traitArr.push(candidate);
+    idx += 7;
+  }
+  return traitArr.slice(0, 5);
+}
+
+// Attach traits to all names
+ALL_NAMES.forEach(n => { n.traits = assignTraits(n.name, n.origin); });
 
 // Storage helpers — backed by Firebase Realtime Database
 async function loadData(key, fallback) {
@@ -142,19 +322,23 @@ function shuffle(arr) {
 }
 
 // Pick 5 names intelligently
-function pickFive(ratings, comparisons, allNames) {
+function pickFive(ratings, comparisons, allNames, dislikedNames = new Set()) {
   const totalComparisons = Object.values(comparisons).reduce((s, v) => s + v, 0);
   
+  // Filter out disliked names most of the time (~5% chance they sneak back in)
+  const preferred = allNames.filter(n => !dislikedNames.has(n.name) || Math.random() < 0.05);
+  const pool = preferred.length >= 5 ? preferred : allNames;
+
   if (totalComparisons < 50) {
-    // Early phase: random selection, balanced between A/non-A and Indian/non-Indian
-    const aNames = allNames.filter(n => n.startsWithA);
-    const nonANames = allNames.filter(n => !n.startsWithA);
-    const pool = [...shuffle(aNames).slice(0, 3), ...shuffle(nonANames).slice(0, 3)];
-    return shuffle(pool).slice(0, 5);
+    // Early phase: random selection, balanced between A/non-A
+    const aNames = pool.filter(n => n.startsWithA);
+    const nonANames = pool.filter(n => !n.startsWithA);
+    const mixed = [...shuffle(aNames).slice(0, 3), ...shuffle(nonANames).slice(0, 3)];
+    return shuffle(mixed).slice(0, 5);
   }
   
   // Later: mix of exploration (low comparisons) and exploitation (high wins)
-  const scored = allNames.map(n => {
+  const scored = pool.map(n => {
     const comp = comparisons[n.name] || 0;
     const wins = ratings[n.name] || 0;
     // Higher score = more likely to be shown
@@ -167,20 +351,17 @@ function pickFive(ratings, comparisons, allNames) {
   
   // Take from top, ensuring mix
   const result = [];
-  const usedOrigins = new Set();
   let aCount = 0;
   
   for (const n of scored) {
     if (result.length >= 5) break;
-    // Try to get mix of A/non-A
     if (aCount >= 3 && n.startsWithA) continue;
     if (result.length - aCount >= 3 && !n.startsWithA) continue;
     result.push(n);
     if (n.startsWithA) aCount++;
-    usedOrigins.add(n.origin);
   }
   
-  return result.length >= 5 ? result : shuffle(allNames).slice(0, 5);
+  return result.length >= 5 ? result : shuffle(pool).slice(0, 5);
 }
 
 // ============================================================
@@ -196,6 +377,7 @@ export default function NameMyBaby() {
   const [loading, setLoading] = useState(true);
   const [animating, setAnimating] = useState(false);
   const [skippedNames, setSkippedNames] = useState(new Set());
+  const [dislikedNames, setDislikedNames] = useState(new Set());
   const [showFullName, setShowFullName] = useState(true);
   const [favorites, setFavorites] = useState(new Set());
   const [searchQuery, setSearchQuery] = useState("");
@@ -214,6 +396,7 @@ export default function NameMyBaby() {
       const v = await loadData("nmb:totalVotes", 0);
       const f = await loadData("nmb:favorites", []);
       const s = await loadData("nmb:skipped", []);
+      const d = await loadData("nmb:disliked", []);
 
       // Migrate: clean out old ELO-style data
       const hasOldData = Object.values(r).some(val => val >= 100);
@@ -229,9 +412,10 @@ export default function NameMyBaby() {
       setTotalVotes(hasOldData ? 0 : v);
       setFavorites(new Set(f));
       setSkippedNames(new Set(s));
+      setDislikedNames(new Set(d));
 
       const available = ALL_NAMES.filter(n => !new Set(s).has(n.name));
-      setCurrentFive(pickFive(r, hasOldData ? {} : c, available));
+      setCurrentFive(pickFive(r, hasOldData ? {} : c, available, new Set(d)));
       setLoading(false);
     })();
 
@@ -242,15 +426,16 @@ export default function NameMyBaby() {
       fbListen("nmb_totalVotes", (val) => { if (val !== null) setTotalVotes(val); }),
       fbListen("nmb_favorites", (val) => { if (val) setFavorites(new Set(val)); }),
       fbListen("nmb_skipped", (val) => { if (val) setSkippedNames(new Set(val)); }),
+      fbListen("nmb_disliked", (val) => { if (val) setDislikedNames(new Set(val)); }),
     ];
 
     return () => unsubs.forEach(fn => fn());
   }, []);
 
-  const getNextFive = useCallback((r, c, s) => {
+  const getNextFive = useCallback((r, c, s, d) => {
     const available = ALL_NAMES.filter(n => !s.has(n.name));
-    return pickFive(r || ratings, c || comparisons, available);
-  }, [ratings, comparisons]);
+    return pickFive(r || ratings, c || comparisons, available, d || dislikedNames);
+  }, [ratings, comparisons, dislikedNames]);
 
   const handleSelect = async (name) => {
     if (animating) return;
@@ -291,9 +476,13 @@ export default function NameMyBaby() {
     setCurrentFive(getNextFive(ratings, comparisons, skippedNames));
   };
 
-  const handleDislikeAll = () => {
+  const handleDislikeAll = async () => {
     if (animating) return;
-    setCurrentFive(getNextFive(ratings, comparisons, skippedNames));
+    // Track all 5 names as disliked so they almost never appear again
+    const newDisliked = new Set([...dislikedNames, ...currentFive.map(n => n.name)]);
+    setDislikedNames(newDisliked);
+    await saveData("nmb:disliked", [...newDisliked]);
+    setCurrentFive(getNextFive(ratings, comparisons, skippedNames, newDisliked));
   };
 
   const handleNeverShow = async (name) => {
@@ -325,12 +514,14 @@ export default function NameMyBaby() {
     setTotalVotes(0);
     setFavorites(new Set());
     setSkippedNames(new Set());
+    setDislikedNames(new Set());
     await saveData("nmb:ratings", {});
     await saveData("nmb:comparisons", {});
     await saveData("nmb:totalVotes", 0);
     await saveData("nmb:favorites", []);
     await saveData("nmb:skipped", []);
-    setCurrentFive(pickFive({}, {}, ALL_NAMES));
+    await saveData("nmb:disliked", []);
+    setCurrentFive(pickFive({}, {}, ALL_NAMES, new Set()));
   };
 
   // Rankings data — only names with at least 1 vote
@@ -339,7 +530,7 @@ export default function NameMyBaby() {
     .sort((a, b) => b[1] - a[1])
     .map(([name, votes], i) => {
       const info = ALL_NAMES.find(n => n.name === name);
-      return { name, votes, rank: i + 1, origin: info?.origin || "Unknown", comparisons: comparisons[name] || 0, isFavorite: favorites.has(name) };
+      return { name, votes, rank: i + 1, origin: info?.origin || "Unknown", traits: info?.traits || [], comparisons: comparisons[name] || 0, isFavorite: favorites.has(name) };
     });
 
   const filteredRanked = searchQuery
@@ -445,6 +636,8 @@ export default function NameMyBaby() {
             onToggleFavorite={toggleFavorite}
             totalVotes={totalVotes}
             onReset={handleReset}
+            namesSeen={Object.keys(comparisons).length}
+            namesTotal={ALL_NAMES.length}
           />
         )}
         {tab === "favorites" && (
@@ -531,6 +724,15 @@ function DiscoverTab({ currentFive, selected, animating, onSelect, onSkipAll, on
                   }}>
                     {n.origin}
                   </div>
+                  <div style={styles.traitRow}>
+                    {(n.traits || []).map((t, ti) => (
+                      <span key={ti} style={{
+                        ...styles.traitChip,
+                        background: isSelected ? "rgba(255,255,255,0.15)" : "#F2F2F7",
+                        color: isSelected ? "rgba(255,255,255,0.8)" : "#636366",
+                      }}>{t}</span>
+                    ))}
+                  </div>
                 </div>
                 <div style={styles.cardActions}>
                   <button
@@ -568,8 +770,23 @@ function DiscoverTab({ currentFive, selected, animating, onSelect, onSkipAll, on
 // ============================================================
 // RANKINGS TAB
 // ============================================================
-function RankingsTab({ rankedNames, searchQuery, setSearchQuery, favorites, onToggleFavorite, totalVotes, onReset }) {
+function RankingsTab({ rankedNames, searchQuery, setSearchQuery, favorites, onToggleFavorite, totalVotes, onReset, namesSeen, namesTotal }) {
   const maxVotes = rankedNames.length > 0 ? Math.max(...rankedNames.map(n => n.votes)) : 1;
+  const pctComplete = namesTotal > 0 ? Math.round((namesSeen / namesTotal) * 100) : 0;
+  const [showTraits, setShowTraits] = useState(true);
+
+  // Aggregate trait scores: each trait gets the sum of votes from names that have it
+  const traitScores = {};
+  rankedNames.forEach(n => {
+    (n.traits || []).forEach(t => {
+      if (!traitScores[t]) traitScores[t] = 0;
+      traitScores[t] += n.votes;
+    });
+  });
+  const topTraits = Object.entries(traitScores)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 15);
+  const maxTraitScore = topTraits.length > 0 ? topTraits[0][1] : 1;
 
   return (
     <div style={styles.rankingsContainer}>
@@ -590,6 +807,43 @@ function RankingsTab({ rankedNames, searchQuery, setSearchQuery, favorites, onTo
       <div style={styles.rankInfo}>
         {rankedNames.length} names ranked · {totalVotes} total votes
       </div>
+
+      {/* % Complete Progress */}
+      <div style={styles.progressContainer}>
+        <div style={styles.progressHeader}>
+          <span style={styles.progressLabel}>{namesSeen} of {namesTotal.toLocaleString()} names seen</span>
+          <span style={styles.progressPct}>{pctComplete}%</span>
+        </div>
+        <div style={styles.progressTrack}>
+          <div style={{...styles.progressFill, width: `${pctComplete}%`}} />
+        </div>
+      </div>
+
+      {/* Top Traits */}
+      {!searchQuery && topTraits.length > 0 && (
+        <div style={styles.traitsSection}>
+          <button style={styles.traitsSectionHeader} onClick={() => setShowTraits(!showTraits)}>
+            <span style={styles.traitsSectionTitle}>Top Traits You're Drawn To</span>
+            <span style={{color: "#8E8E93", fontSize: 16}}>{showTraits ? "▾" : "▸"}</span>
+          </button>
+          {showTraits && (
+            <div style={styles.traitsList}>
+              {topTraits.map(([trait, score], i) => (
+                <div key={trait} style={styles.traitRankRow}>
+                  <div style={styles.traitRankNum}>{i + 1}</div>
+                  <div style={styles.traitRankDetails}>
+                    <div style={styles.traitRankName}>{trait}</div>
+                    <div style={styles.traitRankBar}>
+                      <div style={{...styles.traitRankBarFill, width: `${(score / maxTraitScore) * 100}%`}} />
+                    </div>
+                  </div>
+                  <div style={styles.traitRankScore}>{score}</div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Top 3 Podium */}
       {!searchQuery && rankedNames.length >= 3 && (
@@ -720,6 +974,7 @@ function originColor(origin) {
     African: { bg: "#FBE9E7", text: "#BF360C", color: "#BF360C", background: "#FBE9E7" },
     Korean: { bg: "#E3F2FD", text: "#1565C0", color: "#1565C0", background: "#E3F2FD" },
     Global: { bg: "#F3E5F5", text: "#6A1B9A", color: "#6A1B9A", background: "#F3E5F5" },
+    Creative: { bg: "#FCE4EC", text: "#AD1457", color: "#AD1457", background: "#FCE4EC" },
   };
   return map[origin] || { bg: "#F5F5F5", text: "#666", color: "#666", background: "#F5F5F5" };
 }
@@ -812,6 +1067,13 @@ const styles = {
     display: "inline-block", fontSize: 11, fontWeight: 500,
     padding: "3px 8px", borderRadius: 6, marginTop: 6,
   },
+  traitRow: {
+    display: "flex", flexWrap: "wrap", gap: 4, marginTop: 6,
+  },
+  traitChip: {
+    fontSize: 10, fontWeight: 500, padding: "2px 7px", borderRadius: 10,
+    whiteSpace: "nowrap",
+  },
   cardActions: { display: "flex", flexDirection: "column", gap: 8, alignItems: "center" },
   iconBtn: {
     background: "none", border: "none", cursor: "pointer", fontSize: 20,
@@ -856,7 +1118,52 @@ const styles = {
     fontSize: 14, padding: 4,
   },
   rankInfo: {
-    fontSize: 13, color: "#8E8E93", marginBottom: 16, textAlign: "center",
+    fontSize: 13, color: "#8E8E93", marginBottom: 12, textAlign: "center",
+  },
+  progressContainer: {
+    background: "#fff", borderRadius: 12, padding: "14px 16px", marginBottom: 16,
+  },
+  progressHeader: {
+    display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8,
+  },
+  progressLabel: { fontSize: 13, color: "#8E8E93" },
+  progressPct: { fontSize: 15, fontWeight: 700, color: "#007AFF" },
+  progressTrack: {
+    height: 6, background: "#E5E5EA", borderRadius: 3, overflow: "hidden",
+  },
+  progressFill: {
+    height: "100%", background: "linear-gradient(90deg, #34C759, #007AFF)",
+    borderRadius: 3, transition: "width 0.5s ease",
+  },
+  traitsSection: {
+    background: "#fff", borderRadius: 14, overflow: "hidden", marginBottom: 16,
+  },
+  traitsSectionHeader: {
+    display: "flex", justifyContent: "space-between", alignItems: "center",
+    padding: "14px 16px", width: "100%", background: "none", border: "none",
+    cursor: "pointer", textAlign: "left",
+  },
+  traitsSectionTitle: { fontSize: 15, fontWeight: 600, color: "#1C1C1E" },
+  traitsList: { padding: "0 16px 12px" },
+  traitRankRow: {
+    display: "flex", alignItems: "center", gap: 10, padding: "6px 0",
+  },
+  traitRankNum: {
+    fontSize: 12, fontWeight: 600, color: "#8E8E93", width: 20, textAlign: "right",
+    fontVariantNumeric: "tabular-nums",
+  },
+  traitRankDetails: { flex: 1, minWidth: 0 },
+  traitRankName: { fontSize: 13, fontWeight: 500, color: "#1C1C1E", marginBottom: 3 },
+  traitRankBar: {
+    height: 4, background: "#E5E5EA", borderRadius: 2, overflow: "hidden",
+  },
+  traitRankBarFill: {
+    height: "100%", background: "linear-gradient(90deg, #FF9500, #FF3B30)",
+    borderRadius: 2, transition: "width 0.5s",
+  },
+  traitRankScore: {
+    fontSize: 13, fontWeight: 600, color: "#8E8E93", width: 30, textAlign: "right",
+    fontVariantNumeric: "tabular-nums",
   },
   podium: {
     display: "flex", justifyContent: "center", alignItems: "flex-end",
