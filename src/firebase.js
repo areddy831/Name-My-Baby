@@ -9,11 +9,12 @@ import { getDatabase, ref, set, get, onValue, remove } from "firebase/database";
 const firebaseConfig = {
   apiKey: "AIzaSyD2oyA6Pv1s6fjUeKTRajIO4jOaxj2uX-4",
   authDomain: "name-my-baby-55061.firebaseapp.com",
-  databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+  databaseURL: "https://name-my-baby-55061-default-rtdb.firebaseio.com",
   projectId: "name-my-baby-55061",
   storageBucket: "name-my-baby-55061.firebasestorage.app",
   messagingSenderId: "266296336757",
   appId: "1:266296336757:web:b54ad98bf65202d378b33c",
+  measurementId: "G-YJRDF78QGX",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -42,8 +43,14 @@ export async function fbRemove(key) {
 
 // Real-time listener — calls callback whenever data changes
 export function fbListen(key, callback) {
-  const unsubscribe = onValue(ref(db, `namemybaby/${key}`), (snapshot) => {
-    callback(snapshot.exists() ? snapshot.val() : null);
-  });
+  const unsubscribe = onValue(
+    ref(db, `namemybaby/${key}`),
+    (snapshot) => {
+      callback(snapshot.exists() ? snapshot.val() : null);
+    },
+    (error) => {
+      console.error(`Firebase listen error for ${key}:`, error);
+    }
+  );
   return unsubscribe;
 }

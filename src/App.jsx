@@ -391,61 +391,73 @@ export default function NameMyBaby() {
 
     // Initial load
     (async () => {
-      // Version check — bump this to force a fresh start
-      const DB_VERSION = 2;
-      const storedVersion = await loadData("nmb:version", 0);
-      
-      if (storedVersion < DB_VERSION) {
-        // Clear everything for a fresh start
-        await saveData("nmb:ratings", {});
-        await saveData("nmb:comparisons", {});
-        await saveData("nmb:totalVotes", 0);
-        await saveData("nmb:favorites", []);
-        await saveData("nmb:skipped", []);
-        await saveData("nmb:disliked", []);
-        await saveData("nmb:version", DB_VERSION);
+      try {
+        // Version check — bump this to force a fresh start
+        const DB_VERSION = 2;
+        const storedVersion = await loadData("nmb:version", 0);
+        
+        if (storedVersion < DB_VERSION) {
+          // Clear everything for a fresh start
+          await saveData("nmb:ratings", {});
+          await saveData("nmb:comparisons", {});
+          await saveData("nmb:totalVotes", 0);
+          await saveData("nmb:favorites", []);
+          await saveData("nmb:skipped", []);
+          await saveData("nmb:disliked", []);
+          await saveData("nmb:version", DB_VERSION);
 
-        setRatings({});
-        setComparisons({});
-        setTotalVotes(0);
-        setFavorites(new Set());
-        setSkippedNames(new Set());
-        setDislikedNames(new Set());
+          setRatings({});
+          setComparisons({});
+          setTotalVotes(0);
+          setFavorites(new Set());
+          setSkippedNames(new Set());
+          setDislikedNames(new Set());
+          setCurrentFive(pickFive({}, {}, ALL_NAMES, new Set()));
+          setLoading(false);
+          return;
+        }
+
+        const r = await loadData("nmb:ratings", {});
+        const c = await loadData("nmb:comparisons", {});
+        const v = await loadData("nmb:totalVotes", 0);
+        const f = await loadData("nmb:favorites", []);
+        const s = await loadData("nmb:skipped", []);
+        const d = await loadData("nmb:disliked", []);
+
+        setRatings(r);
+        setComparisons(c);
+        setTotalVotes(v);
+        setFavorites(new Set(f));
+        setSkippedNames(new Set(s));
+        setDislikedNames(new Set(d));
+
+        const available = ALL_NAMES.filter(n => !new Set(s).has(n.name));
+        setCurrentFive(pickFive(r, c, available, new Set(d)));
+      } catch (e) {
+        console.error("Init error:", e);
+        // Fall back to clean state so the app still works
         setCurrentFive(pickFive({}, {}, ALL_NAMES, new Set()));
+      } finally {
         setLoading(false);
-        return;
       }
-
-      let r = await loadData("nmb:ratings", {});
-      const c = await loadData("nmb:comparisons", {});
-      const v = await loadData("nmb:totalVotes", 0);
-      const f = await loadData("nmb:favorites", []);
-      const s = await loadData("nmb:skipped", []);
-      const d = await loadData("nmb:disliked", []);
-
-      setRatings(r);
-      setComparisons(c);
-      setTotalVotes(v);
-      setFavorites(new Set(f));
-      setSkippedNames(new Set(s));
-      setDislikedNames(new Set(d));
-
-      const available = ALL_NAMES.filter(n => !new Set(s).has(n.name));
-      setCurrentFive(pickFive(r, c, available, new Set(d)));
-      setLoading(false);
     })();
 
     // Real-time listeners — sync votes live between devices
-    const unsubs = [
-      fbListen("nmb_ratings", (val) => { if (val) setRatings(val); }),
-      fbListen("nmb_comparisons", (val) => { if (val) setComparisons(val); }),
-      fbListen("nmb_totalVotes", (val) => { if (val !== null) setTotalVotes(val); }),
-      fbListen("nmb_favorites", (val) => { if (val) setFavorites(new Set(val)); }),
-      fbListen("nmb_skipped", (val) => { if (val) setSkippedNames(new Set(val)); }),
-      fbListen("nmb_disliked", (val) => { if (val) setDislikedNames(new Set(val)); }),
-    ];
+    let unsubs = [];
+    try {
+      unsubs = [
+        fbListen("nmb_ratings", (val) => { if (val) setRatings(val); }),
+        fbListen("nmb_comparisons", (val) => { if (val) setComparisons(val); }),
+        fbListen("nmb_totalVotes", (val) => { if (val !== null) setTotalVotes(val); }),
+        fbListen("nmb_favorites", (val) => { if (val) setFavorites(new Set(val)); }),
+        fbListen("nmb_skipped", (val) => { if (val) setSkippedNames(new Set(val)); }),
+        fbListen("nmb_disliked", (val) => { if (val) setDislikedNames(new Set(val)); }),
+      ];
+    } catch (e) {
+      console.error("Firebase listener error:", e);
+    }
 
-    return () => unsubs.forEach(fn => fn());
+    return () => unsubs.forEach(fn => typeof fn === "function" && fn());
   }, []);
 
   const getNextFive = useCallback((r, c, s, d) => {
