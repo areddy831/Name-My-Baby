@@ -6,136 +6,57 @@ import { fbGet, fbSet, fbRemove, fbListen } from "./firebase.js";
 // Format: [name, origin] where origin: i=Indian, a=Arabic/Persian, f=African, k=Korean, g=Global/Other
 // ============================================================
 const RAW_NAMES = {
-  // INDIAN A-NAMES (~700)
-  iA: `Abhay,Abhik,Abhilash,Abhiram,Abhinav,Abhishek,Achintya,Achyut,Adarsh,Adheesh,Adhrit,Adit,Aditya,Advait,Advay,Agastya,Agniv,Ahir,Ajit,Akash,Akhil,Akshaj,Akshar,Akshit,Amal,Ambar,Ambuj,Amey,Amish,Amit,Amitabh,Amlan,Amol,Amrit,Amulya,Anand,Ananth,Angad,Anik,Aniket,Animesh,Anirban,Anirudh,Anjor,Ankit,Ankur,Anmol,Anuj,Anurag,Apoorv,Archit,Arham,Arihant,Arindam,Arjit,Arnav,Arnesh,Arpit,Arth,Arun,Arvind,Ashish,Ashok,Ashvin,Ashwin,Atharv,Atiksh,Atman,Atul,Avik,Avinash,Aviral,Avnish,Ayan,Ayush,Abir,Achint,Adhvik,Adrith,Agnim,Ahilan,Akrit,Akshat,Amogh,Anay,Aneesh,Arnab,Ashvath,Avyukt,Atulya,Avyan,Akilan,Alok,Amarjit,Amartya,Anant,Anuran,Apurv,Arihan,Arish,Arman,Artham,Aseem,Ashank,Atreya,Avash,Avikshit,Ayodhya,Ajinkya,Akul,Amitav,Anagh,Anshul,Antariksh,Apramey,Aravind,Arijit,Arthav,Asvin,Athrav,Avaneesh,Avirath,Avyay,Akshansh,Amrith,Anshuman,Avijit,Ayog,Akshan,Anshu,Arush,Ashvat,Atishay,Aviraj,Advaith,Akhand,Achal,Adhir,Agrim,Akshay,Alankrit,Amardeep,Amrish,Anchit,Anujit,Aparesh,Archish,Arin,Arjav,Arunesh,Ashrav,Ateev,Avadh,Axat,Ajeet,Avikram,Avani,Ashutosh,Ayuj,Amitesh,Ankush,Aham,Anirvan,Avyukth,Anooj,Arvindh,Ashvit,Ahvan,Anujan,Adinath,Agni,Ashu,Amrita,Ankesh,Arhan,Atri,Akshith,Abhijat,Achyuthan,Ajitesh,Adesh,Adyant,Atmaj,Ahil,Akshit,Abheek,Achyutan,Adhyan,Agneya,Akshobhya,Alhad,Ameyatma,Anagh,Anirdesh,Aparesh,Archish,Arjav,Ashvath,Atiksha,Avighna,Ayukta,Advik,Aghor,Ahinsak,Akrosh,Alankaar,Anekal,Anivesh,Aparesh,Archak,Ashvath,Atiksha,Aveekshit,Adeep,Aghor,Akshansh,Alakhvir,Ambikesh,Amoha,Anindya,Antarman,Apramad,Archak,Arin,Arjav,Avaneesh,Avirath,Avyan,Advay,Ajit,Akshar,Alok,Ambar,Anand,Anik,Ankit,Arnesh,Arth,Ashvin,Atman,Aviral,Avinash,Ayush,Adheesh,Akhilesh,Amalesh,Animesh,Anirban,Antariksh,Arihant,Arindam,Ashank,Atharv,Avikshit,Avyukt,Ayodhya,Adeesh,Agastya,Ahilan,Akshay,Amrit,Anant,Angad,Anurag,Apoorv,Archit,Arpit,Ashish,Ashok,Atreya,Avadh,Avik,Ayan,Akshaj,Amol,Arun,Arvind,Ashwin,Atul,Avnish,Abhay,Adarsh,Adit,Amal,Amey,Anay,Aneesh,Anmol,Anuj,Arham,Arnav,Arush,Ashvat,Avash,Axat,Achintya,Advait,Agniv,Akash,Akhil,Akshat,Amitabh,Amlan,Ananth,Aniket,Anirudh,Ankur,Apurv,Aravind,Arijit,Arjit,Arnab,Ashutosh,Atiksh,Atulya,Aviraj,Avyay,Alankrit,Amardeep,Amartya,Amrish,Anchit,Anshul,Anshuman,Aseem,Ashrav,Atishay,Avijit,Ayuj,Adhrit,Adyant,Agnim,Ahvan,Akrit,Akul,Amitav,Amitesh,Amrith,Anooj,Anshu,Aparesh,Apramey,Arihan,Arish,Arjav,Arthav,Ashvit,Asvin,Atri,Avaneesh,Avikshit,Avyukt,Advik,Ahil,Ajinkya,Akshith,Alhad,Ambikeya,Anivesh,Avighna,Akshobh`.split(","),
-  
-  // INDIAN NON-A NAMES (~550)
-  iN: `Bhavin,Bhrigu,Bharat,Bodhi,Chetan,Chirag,Chinmay,Daksh,Darsh,Dev,Devaj,Devraj,Dhairya,Dhanush,Dhruv,Dinesh,Diyan,Druv,Eshan,Ekaant,Gaurav,Girish,Govind,Guhan,Gulshan,Hari,Harish,Harsh,Hemant,Hitesh,Hrithik,Indra,Ishaan,Ishan,Jai,Jayant,Jivin,Kabir,Kalyan,Karan,Karthik,Keshav,Kian,Kishore,Krish,Krishna,Kunal,Laksh,Lakshay,Lokesh,Madhav,Manan,Manav,Manish,Mehul,Mihir,Milan,Mohit,Moksh,Mukul,Naman,Nakul,Naveen,Neeraj,Neil,Nikhil,Nimish,Nirav,Nirmal,Nishant,Nishith,Ojas,Om,Omkar,Param,Parth,Pavan,Pranav,Prashant,Pratham,Prithvi,Rachit,Raghav,Raj,Rajan,Rajat,Rajesh,Rakesh,Ranvir,Ravi,Reyansh,Rian,Rishabh,Rishi,Ritvik,Rohit,Rudra,Sachin,Sahil,Samar,Sameer,Sanjay,Sarthak,Satvik,Shaan,Shravan,Siddharth,Soham,Sohil,Suraj,Surya,Tanay,Tanish,Tarun,Tejas,Tushar,Uday,Utkarsh,Varun,Ved,Veer,Viaan,Vihaan,Vikram,Vinay,Vir,Vivaan,Vivek,Yash,Yashwin,Yuvan,Bhuvan,Chandran,Chiranjiv,Darshan,Devesh,Dhruvit,Divakar,Ehaan,Eklavya,Ghrishan,Girijan,Gokulnath,Gurpreet,Harshit,Hemish,Hitansh,Idhant,Ishanvi,Jaiveer,Jayesh,Jeeval,Kaivalya,Keshavan,Kirtan,Kovidh,Kunj,Lakshit,Lokith,Manvith,Mayansh,Mitresh,Mohan,Mokshit,Nakshit,Nilesh,Nishith,Ojasvin,Parikshit,Pavit,Pranit,Prashith,Prithvin,Raghuvir,Rishin,Rochak,Rudransh,Sachit,Saharsh,Samarjit,Sanchit,Sarvin,Shreyas,Sidak,Sohum,Sourish,Suvrit,Taksh,Tejit,Tushir,Ujjwal,Utsav,Vaidik,Vedant,Vedan,Vikrant,Viraj,Vivrit,Yashvit,Yuvraj,Zubin,Bhavesh,Charvik,Chintan,Darshil,Devansh,Dhruvil,Ekagra,Falgun,Garvit,Hardik,Hemang,Idris,Ishvar,Jehan,Kairav,Kanish,Keshiv,Kirthan,Kushagr,Lakshman,Madhavraj,Mithun,Mokshit,Nandish,Nihar,Nishith,Ojasvi,Onir,Pranith,Prithviraj,Raivat,Ranvijay,Rishit,Rushil,Sahaj,Sambhav,Sanchit,Sharav,Shivam,Siddhant,Soumil,Subhan,Svanik,Takshak,Tejasvin,Tulsi,Ujjval,Utsav,Vaibhav,Valmik,Vedansh,Vihang,Vineet,Virat,Vishesh,Yatharth,Yuvaan,Zyan,Brijesh,Chahel,Chitvan,Devkumar,Dhanvin,Druvin,Ekansh,Falak,Garvish,Harjot,Hemish,Idhant,Ishraq,Johar,Kaivalya,Kanav,Keshavan,Kovidh,Kushaan,Lakhvir,Madhavesh,Mitansh,Mokshit,Nandak,Nihit,Nishith,Paresh,Rachit,Roshit,Rudransh,Saarang,Sambhav,Sharvil,Sidak,Soumya,Subodh,Tanuj,Tejasv,Trishan,Ujval,Vaibhav,Vedanth,Vihari,Vineet,Vishrut,Yatharth,Yuvin`.split(","),
-  
-  // ARABIC/PERSIAN A-NAMES (~180)
-  aA: `Adil,Akram,Amir,Anwar,Arif,Ashraf,Azim,Aziz,Altair,Amin,Asad,Atif,Aydin,Azad,Afzal,Ajmal,Akbar,Ammar,Ashfaq,Asim,Awais,Ayaz,Azlan,Aftab,Aladdin,Alim,Ameen,Arshad,Ashar,Aydan,Azhar,Adnan,Ahsan,Akhtar,Amjad,Arman,Asif,Azmat,Abrar,Adeel,Ahmad,Akil,Amani,Arham,Aslan,Awad,Afnan,Ahan,Aimal,Altan,Arsalan,Ashir,Ayub,Adham,Ahad,Aijaz,Akif,Almas,Ameer,Ashfaq,Azan,Abid,Ahmar,Athar,Azzam,Aqil,Arshid,Asfar,Azeem,Ahyan,Akeel,Almeer,Amid,Ansar,Afsar,Akhlaq,Aleem,Ammar,Arkan,Asrar,Atiq,Aydin,Azfar,Ayman,Abrar,Adham,Ahmar,Akram,Aleem,Amjad,Ansar,Arkan,Asrar,Atiq,Aydin,Azfar,Ayman,Arfan,Ashir,Avais,Ajaz,Anis,Asad,Azhar,Adeel,Afzal,Ahad,Akif,Alim,Aman,Ameen,Anwar,Arif,Ashraf,Atif,Ayaz,Aziz,Akbar,Altan,Amani,Arman,Aslan,Ayub,Azad,Adnan,Ahsan,Akil,Altair,Amin,Arshad,Ashar,Azim,Abid,Adil,Ahmar,Akhtar,Almas,Ameer,Arsalan,Asfar,Azeem,Aqil,Arshid,Awad,Azlan,Afnan,Asim,Awais,Azmat`.split(","),
-
-  // ARABIC/PERSIAN NON-A NAMES (~180)
-  aN: `Bashir,Bilal,Cairo,Cyrus,Daniyal,Emad,Farid,Feroz,Faisal,Ghaffar,Hakim,Hamza,Hasan,Ibrahim,Idris,Imran,Iqbal,Jahan,Jalal,Jamal,Kadir,Kamran,Karim,Khalid,Khurram,Latif,Liaqat,Mahir,Majid,Malik,Mansur,Mazin,Mubarak,Mustafa,Nabil,Nadeem,Nasir,Navid,Omar,Osman,Parviz,Qadir,Qasim,Rafiq,Rashid,Rayan,Reza,Riyad,Saif,Salim,Shahid,Shamim,Shariq,Suhaib,Sultan,Tahir,Tariq,Wahid,Yusuf,Zahed,Zahir,Zaid,Zakir,Zameer,Zubair,Burhan,Darian,Ehsan,Faizan,Hadi,Hamid,Hashim,Jabir,Junaid,Kamil,Kashif,Kian,Laith,Mahdi,Marzuq,Mirza,Nadir,Naveed,Omid,Pervez,Qurban,Rahim,Rehan,Rizwan,Sabir,Samad,Shahzad,Siraj,Taimur,Talha,Wasim,Yasir,Zahid,Zaman,Zarif,Ziyad,Faris,Haroun,Ismail,Kabeer,Luqman,Muhsin,Nizar,Rustam,Safwan,Shafiq,Waqar,Zafar,Bahir,Badr,Daud,Faiz,Ghazi,Habib,Haider,Ijaz,Irfan,Jabbar,Kafeel,Kamil,Khalil,Masood,Mazen,Mukhtar,Munir,Naeem,Naseem,Rauf,Saad,Sadiq,Saqib,Shams,Tariq,Ubaid,Wali,Yasin,Zain,Zuhayr,Basim,Daoud,Fawaz,Ghalib,Hamdan,Husain,Iskander,Jihad,Kasim,Luay,Muhammed,Naim,Rafi,Suhail,Talib,Usama,Walid,Yamin,Zaki`.split(","),
-
-  // AFRICAN A-NAMES (~80)
-  fA: `Abasi,Adebayo,Adisa,Amadi,Ashanti,Ayodele,Azibo,Ajani,Amara,Asante,Ayomide,Amiri,Athi,Ayuba,Adom,Agu,Akpan,Atsu,Ayize,Adeniyi,Akwasi,Atiba,Ayokunle,Adelu,Amani,Asafa,Ayinla,Abayomi,Akuji,Amadu,Asir,Ayotunde,Abeeku,Amani,Afari,Akachi,Ayenew,Abeo,Ajamu,Akachi,Amadi,Asante,Ayize,Abioye,Amadi,Ashanti,Azibo,Ade,Adeyemi,Afi,Akintayo,Amadu,Asefa,Ayomide,Akuji,Amina,Asefa,Ayuba,Abiodun,Adeyinka,Ajamu,Akoto`.split(","),
-
-  // AFRICAN NON-A NAMES (~80)
-  fN: `Bakari,Baraka,Chidi,Chijioke,Dayo,Duma,Ekon,Emeka,Faraji,Fenuku,Gamba,Habib,Ife,Jahi,Jelani,Kalu,Kamau,Kato,Kgosi,Kwame,Kwesi,Lamin,Lekan,Mansa,Masego,Nkosi,Nnamdi,Obinna,Ola,Oluwa,Omari,Otieno,Paki,Rafiki,Sekou,Simba,Tendai,Themba,Uche,Uzoma,Wale,Yaw,Zaki,Zuberi,Bello,Chima,Danladi,Gakere,Jabari,Kofi,Kwaku,Makena,Mwangi,Nonso,Obi,Segun,Tafari,Zuri,Biko,Chike,Diallo,Ekene,Femi,Gbenga,Idi,Jide,Kalu,Lemuel,Mandela,Nkem,Okonkwo,Rashidi,Sani,Tobi,Udo,Zaire`.split(","),
-
-  // KOREAN-STYLE NAMES (easy to pronounce, no Japanese) (~60)
-  kN: `Baram,Bitna,Chansol,Dohyun,Eunseo,Haneul,Hyunjin,Inwoo,Jaeho,Jiho,Jiwon,Junseo,Kihan,Minjun,Namgil,Rian,Seohan,Seojun,Siwoo,Taeho,Wonjin,Yejun,Yuchan,Daeho,Hajun,Insoo,Jaemin,Jihoon,Junyeol,Kiyoon,Minho,Namsun,Seungho,Siwon,Taejin,Woosung,Yejin,Yubin,Chaewon,Dojin,Geonwoo,Hyunwoo,Jaesung,Jinhyuk,Kijun,Minseok,Seokjin,Soojin,Taehyun,Woojin,Youngjae,Byungho,Dongwook,Gunwoo,Hyunseok,Jaewon,Junwoo,Minwoo,Sunho`.split(","),
-
-  // GLOBAL/OTHER A-NAMES (Latin, Greek, Slavic, Celtic, etc.) (~350)
-  gA: `Adriel,Alaric,Alden,Aldric,Alexei,Alistair,Altan,Ambrose,Anders,Anton,Arlo,Arturo,Auberon,Aurelio,Alarik,Aldrin,Aleron,Alfonso,Alvar,Amari,Andrei,Angelo,Arden,Arlen,Ashby,Aubrey,Avery,Aldous,Aleric,Alvaro,Amaro,Andre,Anselm,Artem,Athos,Auguste,Alfons,Amato,Anatol,Angus,Ariel,August,Abelard,Albion,Alfredo,Amador,Anselmo,Artemis,Augustin,Alberic,Aldwin,Alfio,Amias,Andor,Anoush,Armel,Atticus,Aurelius,Aurelian,Azariah,Alastair,Alcide,Alexios,Amadeo,Ancel,Ardian,Arno,Attila,Auden,Albin,Alton,Amadeus,Anchise,Argento,Arnulf,Augusto,Abner,Alcuin,Alvise,Armand,Arsenio,Atherton,Aubin,Axton,Adair,Alarik,Aldhelm,Aleph,Altair,Amias,Andras,Ansel,Ariston,Arne,Asher,Avalon,Azriel,Adler,Aldric,Aleksei,Aleph,Altair,Amias,Andras,Ansel,Apollo,Ariston,Arne,Atlas,Avalon,Azriel,Adelmo,Alarik,Aleksi,Alonso,Alwin,Ambrus,Andries,Antoni,Archibald,Ariston,Arvo,Ashwin,Augustus,Aziz,Adelric,Alford,Algernon,Alonzo,Amedeo,Anchise,Andrin,Antonin,Ardal,Arvid,Asmund,Austyn,Avon,Aban,Adelard,Adlai,Adolfo,Alford,Algot,Alphard,Alvaro,Amedeo,Anchise,Andrin,Ange,Anselmo,Archibald,Ariston,Arno,Arvid,Asmund,Axel,Albrecht,Alvar,Amadis,Ambrus,Ander,Anselm,Archard,Ariston,Arne,Asher,Aurelio,Azriel,Adrien,Alasdair,Alden,Alexios,Altair,Amadeo,Ambrose,Anders,Anselm,Arlen,Artem,Asher,Atticus,Aurelius,Axel`.split(","),
-
-  // GLOBAL/OTHER NON-A NAMES (~600)
-  gN: `Bastian,Benedict,Benicio,Blaise,Bodhi,Bram,Brennan,Cael,Callum,Caspian,Cedric,Cillian,Cormac,Cosimo,Cyprian,Dashiell,Declan,Dimitri,Dorian,Elio,Elian,Emil,Emeric,Enrique,Enzo,Ephraim,Esteban,Evander,Fabian,Felix,Finnian,Florian,Flynn,Gideon,Griffin,Hadrian,Hector,Hugo,Idris,Ignacio,Ilan,Inigo,Joaquin,Jules,Kai,Kian,Kylan,Lachlan,Leander,Lennox,Leon,Lionel,Lorcan,Lucian,Magnus,Marcelo,Matteo,Niko,Nico,Octavio,Orion,Oscar,Otto,Pascal,Quillan,Rafael,Remy,Ren,Roman,Santiago,Sebastian,Silas,Soren,Stellan,Sterling,Thane,Theo,Tobias,Viggo,Xander,Zain,Zephyr,Bastien,Bjorn,Boden,Bramwell,Caius,Cassius,Cosmo,Cristian,Dante,Desmond,Dragan,Edison,Emrys,Erik,Espen,Evren,Fabrizio,Fenris,Fionn,Gael,Galen,Gareth,Gavril,Hadley,Henrick,Hollis,Ignatius,Ivar,Jasper,Kael,Kiran,Laszlo,Laurent,Leland,Lewin,Lorenzo,Luca,Lucien,Malcolm,Marcel,Mathis,Maxim,Mikael,Milo,Navarro,Nikolai,Noel,Oberon,Oleander,Orin,Osias,Percival,Quentin,Rainer,Raphael,Rocco,Roland,Rowan,Sagan,Salvador,Saxon,Severin,Silvio,Taran,Theron,Tomas,Ulric,Valentin,Vesper,Vico,Werner,Wren,Xavi,Yale,Yohan,Zephyrin,Branimir,Caspar,Corbin,Devlin,Elric,Ewen,Fenwick,Garron,Halden,Innes,Jareth,Kellan,Larkin,Merrick,Niall,Odhran,Phelan,Riordan,Tiernan,Vaughn,Walden,Yoren,Zander,Callan,Einar,Frey,Gustaf,Henrik,Jovan,Lars,Nils,Osric,Ragnar,Stig,Torsten,Viktor,Wolfram,Baldric,Cato,Darian,Gavriil,Hartwin,Ingmar,Kaspar,Lennart,Oskar,Runar,Sigmund,Torben,Volker,Corin,Egan,Frode,Gordan,Halvar,Isak,Jorin,Kylen,Lorenz,Marek,Otis,Sorin,Thierry,Uri,Valko,Zoltan,Beckett,Briar,Calloway,Corwin,Dalton,Edric,Eero,Ferris,Gideon,Greyson,Hartley,Idris,Jarvis,Kael,Leif,Lorcan,Montague,Niels,Orson,Phoenix,Quinlan,Raylan,Ronan,Severin,Thaddeus,Tristan,Ulric,Viggo,Westley,Yael,Zephyrus,Boden,Castor,Crispin,Dermot,Emile,Everard,Finian,Gulliver,Halvard,Iskander,Jolyon,Kael,Leif,Loxley,Merritt,Nero,Oleander,Quade,Remus,Roshan,Stellan,Theron,Ulysses,Vance,Willem,Yuri,Zenon,Bjorn,Calix,Crispin,Draven,Eldric,Falk,Galileo,Holden,Ivo,Jovian,Kepler,Lazarus,Lysander,Mordecai,Nestor,Orestes,Perseus,Quillan,Remington,Simeon,Stellan,Thales,Ulric,Valor,Wilder,Xenos,Yael,Zenith,Basil,Cadmus,Caspian,Dalton,Eamon,Fergus,Gideon,Hollis,Ivo,Jasper,Keegan,Leander,Magnus,Nikolai,Odin,Pascal,Rune,Stellan,Tobias,Ulric,Viggo,Willem,Xavi,Yorick,Zander,Brennan,Cormac,Desmond,Emrys,Fionn,Gareth,Henrik,Iker,Jarvis,Killian,Laszlo,Marcel,Niall,Oskar,Phelan,Quentin,Riordan,Soren,Tiernan,Ulric,Viktor,Wren,Xander,Yoren,Zoltan,Beric,Carsten,Damon,Elio,Faris,Gordan,Hadrian,Iskander,Jorin,Kellan,Lorcan,Matteo,Nico,Orion,Rafael,Silas,Thane,Vico,Wulfric,Yohan,Zephyr`.split(","),
-  // SUPPLEMENTARY INDIAN A-NAMES
-  iA2: `Abhyuday,Adheendra,Adhyanth,Advayanth,Agneesh,Aharnish,Akshayanth,Alankaar,Alaukik,Ameyatma,Anantram,Aneekrit,Anirdesh,Ankith,Anshvit,Anubhav,Archish,Arindam,Arnesh,Arpith,Ashmit,Avikshith,Avneesh,Ayushmaan,Abheek,Achintya,Adhiraj,Advayanth,Agneya,Aharnish,Akshayanth,Alaukik,Amitoj,Anantdev,Aneekrit,Ankith,Anubhav,Arindam,Arpith,Ashmit,Avikshith,Avneesh,Adhish,Agnivesh,Akhilraj,Amitoj,Anantdev,Anivrit,Apurvansh,Archan,Arindham,Arjundev,Arpan,Atiksh,Ayansh,Abhiroop,Adhyayan,Akhyansh,Anantjit,Ankurjit,Apurvansh,Archan,Arthik,Ashmeet,Avikshit,Ayojan,Adinath,Akilesh,Amolik,Anantjit,Ankurjit,Aparesh,Archanesh,Arthik,Ashmeet,Ateesh,Aviroop,Ayojan,Abhaydatt,Adhiroop,Akroor,Anantdatt,Ankurjit,Aparesh,Archanesh,Arthik,Ateesh,Aviroop,Ayurved,Abhaydatt,Adhiroop,Akroor`.split(","),
-
-  // SUPPLEMENTARY INDIAN NON-A NAMES
-  iN2: `Bandhan,Bhargav,Bhavesh,Bipin,Bodhan,Chandresh,Chirayu,Dakshesh,Darshak,Dayakar,Devarsh,Dhanraj,Dhiren,Divakar,Drupad,Ekant,Gagandeep,Ganeshwar,Gaurang,Giridhar,Govardhan,Gurunath,Hansraj,Harendra,Harshal,Hemchandra,Hiresh,Idhant,Indrajit,Ishandev,Jaganmay,Jagdish,Janardhan,Jaydev,Jivansh,Kaivalya,Kalash,Kamalnayan,Kanhaiya,Kaushal,Kethan,Kiranmay,Koushik,Kuldeep,Kushal,Lakhvir,Lalith,Lavith,Likhit,Lokith,Madhukar,Maheep,Maitreya,Mayank,Mihit,Milind,Mitesh,Mrigank,Narottam,Nilkanth,Nirdesh,Ojaswin,Omesh,Padmanabh,Pallav,Paramjit,Paritosh,Pinak,Prabhakar,Prahlad,Prajval,Prasenjit,Priyansh,Rachit,Raghunath,Rajkumar,Ramcharan,Randhir,Rashmit,Ravindra,Ridhan,Rishikesh,Rochak,Rudraksh,Sahasra,Samanvay,Sankalp,Sarvesh,Sharad,Shashank,Shivendra,Shvetank,Siddhesh,Sohail,Sourish,Subodh,Sumeet,Suvidh,Taksheel,Tanveer,Tejpal,Trilok,Tushaar,Udayan,Ujesh,Vaibhav,Valmik,Vasudev,Vedansh,Vijeth,Vinaayak,Viraj,Vishwajit,Yatharth,Yogesh,Yuvaan,Zyan`.split(","),
-
-  // SUPPLEMENTARY GLOBAL A-NAMES
-  gA2: `Absalom,Achilles,Adonis,Aeneas,Agapios,Alarik,Alcander,Aldhelm,Aleph,Alfio,Algernon,Alhambra,Alphonse,Altair,Amadis,Ambrogio,Amias,Anchise,Androcles,Anselmo,Antioch,Apollo,Arcadio,Archer,Arden,Argento,Aribert,Ariston,Arkady,Armando,Arnaldo,Arsenio,Artemas,Ascanio,Aspen,Asterion,Atlas,Auberon,Avalon,Averill,Axton,Achille,Adler,Adriano,Aeneas,Alberic,Alcide,Aldon,Aleksi,Alfio,Algot,Alistair,Alphard,Altair,Alvise,Amadeo,Ambrus,Amias,Anchise,Andor,Angilbert,Anselm,Araldo,Arcadius,Ardal,Aretas,Armistead,Arnfried,Arsenio,Artemas,Ascanio,Attilio,Augustin,Aurelio,Avalon,Axel`.split(","),
-
-  // SUPPLEMENTARY GLOBAL NON-A NAMES
-  gN2: `Baldwin,Barnaby,Basil,Beckett,Bellamy,Bertram,Birch,Blaise,Boden,Bowen,Bramwell,Briar,Bruno,Caelum,Caldwell,Calloway,Caradoc,Carlton,Cassander,Cedric,Chester,Clement,Clifton,Colbert,Conrad,Corentin,Cosimo,Crispin,Dalton,Dashiell,Devereux,Dolan,Donovan,Drake,Drummond,Duncan,Edmund,Eldon,Elwin,Emilio,Emrys,Enoch,Erasmus,Erwin,Esmond,Everett,Fairfax,Falconer,Fenwick,Ferdinand,Finian,Florent,Forrest,Frederick,Gabriel,Gannon,Garrick,Garrison,Gavin,Gideon,Gilroy,Greyson,Griffith,Guillaume,Gunther,Hadrian,Halcyon,Hamish,Harlan,Hartley,Henning,Herbert,Heron,Hilton,Holden,Horatio,Humphrey,Idris,Ignatius,Ingram,Irving,Isidor,Jarrett,Jenson,Jerome,Justus,Kael,Keaton,Kellan,Kendric,Kenton,Kieran,Kingsley,Kipling,Klaus,Lachlan,Lambert,Langdon,Laurence,Leander,Leopold,Linwood,Llewellyn,Lorenzo,Lorimer,Lysander,Malcolm,Manning,Marcel,Marsden,Mercer,Montague,Mordecai,Morrison,Mortimer,Nash,Neville,Norbert,Oberon,Octavian,Oleander,Orion,Orson,Osbert,Pemberton,Percival,Phineas,Pierce,Prescott,Preston,Prosper,Quillan,Quinlan,Rafferty,Rainier,Ramsey,Redmond,Remington,Richmond,Roderick,Roland,Ronan,Roscoe,Rowland,Rupert,Saber,Samson,Saxon,Sebastian,Sheldon,Sheridan,Silvanus,Simeon,Solomon,Spencer,Sterling,Sullivan,Sylvester,Thaddeus,Theobald,Thornton,Thurston,Tobias,Trenton,Tristan,Ulysses,Valerio,Vance,Victor,Vincent,Wallace,Warren,Webster,Wesley,Whitman,Wilder,Winston,Wolfgang,Wycliffe,Yaroslav,Yorick,Zenith,Zephyr`.split(","),
-
-  // SUPPLEMENTARY ARABIC/PERSIAN A-NAMES
-  aA2: `Alborz,Anosh,Arash,Ardeshir,Arman,Arshia,Ashkan,Avesta,Azarmehr,Abtin,Afarin,Aftab,Afshin,Ahura,Arash,Ardalan,Arjang,Arman,Arsham,Artin,Ashkan,Atabak,Avand,Azad,Azarnoosh,Abid,Adham,Afzal,Ahmad,Akil,Alim,Ameen,Amir,Anwar,Arif,Ashraf,Azim,Aziz,Altair,Amin,Arshad,Aslan,Azlan`.split(","),
-
-  // SUPPLEMENTARY ARABIC/PERSIAN NON-A NAMES  
-  aN2: `Bahram,Behnam,Behrad,Behzad,Bijan,Changiz,Dariush,Farshad,Farzad,Farzin,Fereydoun,Hafez,Hooman,Hormoz,Kaveh,Keyvan,Kourosh,Mehrdad,Nima,Pasha,Payam,Peyman,Piruz,Ramin,Rostam,Sepehr,Shahram,Shahriar,Siavash,Sohrab,Touraj,Vahid,Yasin,Zartosht,Babak,Bahador,Behrouz,Dara,Farzan,Firouz,Houshang,Iraj,Jamshid,Khosrow,Maziar,Mehran,Nadim,Parham,Pouya,Reza,Saman,Shahab,Siamak,Sina,Taha,Vahed,Yunus,Zarif`.split(","),
-
-  // EXTRA A-NAMES - MIXED ORIGINS to balance ratio
-  extraA: `Aban,Abram,Achim,Adlai,Aeron,Agron,Aiden,Aimal,Ajit,Alain,Alaric,Aldrin,Alexei,Alford,Alfredo,Algar,Algot,Alhad,Alister,Almond,Alois,Alpin,Alric,Altman,Alvaro,Alvin,Amado,Amadou,Amaru,Ambrus,Amias,Amos,Amrit,Amyas,Anchise,Andor,Andrei,Anil,Anselm,Anselmo,Anson,Antero,Anthon,Anton,Anwar,Archer,Arden,Argan,Arian,Ariel,Aris,Ariston,Arkady,Arlen,Armand,Armel,Arnaldo,Arne,Arnold,Arpad,Arren,Arshad,Artem,Artemas,Asher,Ashton,Asmund,Aster,Athos,Atlas,August,Aurel,Aurelio,Austin,Avalon,Avard,Avery,Avon,Axel,Aydin,Aziz,Azriel,Azzam,Adem,Adham,Adrien,Afonso,Ahmet,Alban,Albrecht,Aldous,Aleph,Alfonso,Algernon,Alistair,Alonso,Alphard,Alston,Altair,Alvise,Amado,Amato,Amelio,Amias,Amrit,Anatol,Anders,Andre,Andrzej,Angelo,Angus,Annan,Anselm,Anton,Anwar,Apolo,Archer,Arden,Argento,Arian,Ariel,Aris,Arjang,Arlen,Armand,Armin,Arnaud,Arnfried,Arnulf,Arpad,Arren,Arsene,Artemis,Arvo,Asim,Asmund,Atlas,Atticus,Aubin,Auden,August,Aurelius,Avery,Aviv,Axel,Aydin,Azariah,Aziz,Azouz,Alvar,Amador,Amias,Andor,Archard,Ariston,Arne,Ascanio,Azarmehr,Abir,Achim,Adamo,Alarik,Albion,Aleksi,Alfio,Algot,Alpin,Altan,Amadis,Ambrose,Amias,Ander,Angilbert,Anselmo,Antioch,Araldo,Arcadio,Ardal,Aretas,Armistead,Arnfried,Arsenio,Artemas,Ascanio,Attilio,Augustin,Aurelio,Avalon`.split(","),
-
-  // EXTRA NON-A NAMES to keep total high
-  extraN: `Baldwin,Barnaby,Basil,Beckett,Bellamy,Bertram,Birch,Bowen,Bramwell,Bruno,Caelum,Caldwell,Caradoc,Carlton,Clement,Clifton,Colbert,Conrad,Corentin,Crispin,Dalton,Devereux,Dolan,Donovan,Drake,Drummond,Duncan,Edmund,Eldon,Elwin,Emilio,Enoch,Erasmus,Erwin,Esmond,Everett,Fairfax,Falconer,Ferdinand,Florent,Forrest,Frederick,Gabriel,Gannon,Garrick,Garrison,Gavin,Gilroy,Griffith,Guillaume,Gunther,Halcyon,Hamish,Harlan,Hartley,Henning,Herbert,Heron,Hilton,Holden,Horatio,Humphrey,Ingram,Irving,Isidor,Jarrett,Jenson,Jerome,Justus,Keaton,Kendric,Kenton,Kieran,Kingsley,Kipling,Klaus,Lambert,Langdon,Laurence,Leopold,Linwood,Llewellyn,Lorimer,Manning,Marsden,Mercer,Montague,Morrison,Mortimer,Nash,Neville,Norbert,Octavian,Osbert,Pemberton,Phineas,Pierce,Prescott,Preston,Prosper,Quinlan,Rafferty,Rainier,Ramsey,Redmond,Richmond,Roderick,Roscoe,Rowland,Rupert,Saber,Samson,Sheldon,Sheridan,Silvanus,Solomon,Spencer,Sullivan,Sylvester,Theobald,Thornton,Thurston,Trenton,Valerio,Wallace,Warren,Webster,Wesley,Whitman,Winston,Wolfgang,Wycliffe,Yaroslav`.split(","),
-
-  // MORE INDIAN A-NAMES to boost A-ratio and Indian-ratio
-  iA3: `Abhirup,Abhuday,Adbhut,Adhayanth,Adhvaith,Adishwar,Advayanand,Aharnish,Ajayanth,Ajitpal,Akhilnath,Alokraj,Amandeep,Ambikesh,Ameyraj,Amitayu,Amoghraj,Amritpal,Amritansh,Anandrup,Andal,Aneekrit,Anilaabh,Aniruddh,Ankitraj,Anshveer,Antardhan,Anubhav,Anugrah,Anukalp,Anupam,Anuraag,Anuvansh,Aranyak,Archish,Arijeet,Arinav,Arindham,Arkesh,Arnavraj,Arpandeep,Ashokraj,Ashuddh,Atharvan,Atishvir,Avadhesh,Avigyan,Avikshith,Avyayansh,Ayodhyanath,Ayurved,Ayushmaan,Azhagi`.split(","),
-
-
-  // ADDITIONAL INDIAN A-NAMES (Sanskrit/uncommon)
-  iA4: `Adhidev,Adhyansh,Agneeshwar,Ahamkar,Ajaydev,Akhyaansh,Akshaybodh,Alankrit,Amoghsiddh,Amritansh,Anantdev,Anashvar,Aneekrit,Anirdesh,Anjaneya,Anugyan,Aparesh,Archana,Arinav,Arindham,Arkesh,Armaan,Arnavdeep,Arpanveer,Ashokdeep,Ashoknath,Atishveer,Avighna,Avyansh,Ayodhyanand,Ayurvardhan,Azhagan`.split(","),
-
-  // EXPANSION: Indian A-names
-  iA5: `Abhijnan,Abhijeet,Abhilekh,Abhimand,Abhineet,Abhirath,Abhisek,Abhyudai,Achintan,Achyutam,Adeshwar,Adheena,Adhirath,Adishvar,Advaitam,Agnikund,Agnirath,Agnishvar,Ahalyesh,Ahimkar,Ajamil,Ajaypal,Ajitabh,Ajitdev,Ajitesh,Akhilband,Akshatam,Akshobhya,Alabhya,Alamgir,Alaukik,Amalesh,Amanpreet,Amarnath,Ambikeya,Amitayu,Amritpal,Anagha,Analekh,Anandmay,Anandrup,Anantpur,Anantram,Anashwar,Aneekrit,Angaraj,Angiras,Animish,Anirvan,Anivrit,Ankitam,Antardhan,Anumit,Anupam,Anuvrat,Apurvam,Aranyak,Archakam,Archishman,Arjunesh,Arnavdeep,Arpanveer,Ashwinraj,Athirath,Atmanand,Avadhesh,Avadhut,Avighnam,Avyayam,Ayushmat`.split(","),
-  // EXPANSION: Indian non-A names
-  iN5: `Bahulesh,Baikunth,Bakul,Balaraj,Baldev,Balkrishna,Balvant,Balveer,Bandhul,Bankim,Bansidhar,Basant,Bhadra,Bhagavan,Bhagirath,Bhagyaraj,Bhairav,Bhajan,Bhaktaraj,Bhanudas,Bhanupriya,Bhaskaran,Bhasvar,Bhaumik,Bhavdeep,Bhavinesh,Bhimsen,Bholanath,Bhoomesh,Bhoopat,Bhudev,Bhupendra,Bhushan,Bijay,Bijoy,Bikram,Bimal,Bindusar,Birbal,Bishan,Brahmdev,Brahmanand,Brajesh,Brijkishor,Brijlal,Chandradev,Chandranath,Chandrasen,Charandeep,Charuvrat,Chaturbhuj,Chidambar,Chidanand,Chinmayanand,Chiranjeev,Chitrakoot,Chitranjan,Chitresh,Dagdu,Dakshraj,Damodar,Darpan,Dayakara,Dayasagar,Debasish,Deepankar,Deepesh,Deshraj,Devajit,Devakant,Devashish,Devavrat,Devendra,Devkant,Devnarayan,Dhananjay,Dhanaraj,Dhaneshwar,Dhanisht,Dhanurdhar,Dhanvant,Dharmaveer,Dhatri,Dhirendra,Dhyanesh,Digambar,Digvijayi,Dinanath,Dipankar,Divyangshu,Durjay,Dushyant,Dyutiman,Eknath,Gangaram,Gangeshwar,Ghanashyam,Girdhari,Gopaldas,Gopinath,Gorakhnath,Goverdhan,Govindraj,Gulab,Gulabchand,Gunavant,Gurdayal,Gurdip,Gurnam,Gurudatt,Gurudev,Gyandeep,Gyaneshwar,Hanumant,Haridev,Harilal,Hariram,Hemkant,Hemkumar,Himadri,Hiranyak,Hridayesh,Hridaynath,Indivar,Indradeep,Indrakant,Indraneel,Ishvardas,Jagadeep,Jagadish,Jagannath,Jagdish,Jagjivan,Jagmohan,Jagpal,Jaigopal,Jaikishor,Jaimini,Jaiprakash,Jaivardhan,Janmejay,Jaspal,Jaswant,Jawahar,Jayachandran,Jayagopal,Jayakumar,Jayaprakash,Jayashankar,Jayawardhan,Jigesh,Jivanraj,Jivitesh,Jogeshwar,Joshila,Jyotindra,Jyotirmay,Jyotirmayi,Kaleshwar,Kalyanraj,Kamakshi,Kamalnayan,Kameshwar,Kanhaiyalal,Kapildev,Karnamrit,Karneshwar,Kartikesh,Kashiram,Kashinath,Kaushlesh,Keshavraj,Kirtiman,Kowshik,Krishanpal,Krishnendu,Kshetrapal,Kuladhar,Kumudesh,Kunalraj,Kusumesh,Lakshmanraj,Lakshmikant,Laxmikant,Lokeshwar,Lokprakash,Lokvir,Madanpal,Madhavdas,Madhavesh,Madhuraj,Mahabir,Mahakant,Mahanand,Maharaj,Mahashay,Mahavir,Mahidhar,Mahipat,Mahodaya,Mangaldev,Manikchand,Maniram,Manishwar,Manjunath,Mansukh,Manthanesh,Meghraj,Mohanraj,Mohinder,Moolchand,Motilal,Mrigendra,Mrigeshwar,Mukeshwar,Muktanand,Muthuvel,Nachiket,Nalinkant,Namdev,Nandgopal,Narsingh,Navneet,Nayanesh,Neelambar,Nilmani,Nirankush,Nirbhay,Nirdosh,Nirvanesh,Nishikant,Nrisimha,Omeshwar,Omprakash,Padmakant,Parmatma,Pillaiyar,Prabhudayal,Prachetas,Pradyuman,Prakhyat,Pranavesh,Praneshwar,Prathamesh,Premkumar,Prithvipal,Priyavrat,Purnendu,Radheshyam,Raghuraj,Rajmohan,Rajvardhan,Ramakant,Ramanand,Ramchandran,Ramgopal,Ramkishor,Ramprakash,Ramprasad,Ramswaroop,Ranajit,Ranchhodlal,Ranjitsinh,Raseshwar,Rathinam,Ratnadeep,Ratnakant,Ratnakar,Ravikant,Rupeshwar,Sadanand,Sahajvir,Sakharam,Samarthvir,Sanmukh,Sarveshwar,Saswat,Satyajeet,Satyavrat,Seshadri,Shantanand,Sharvaanand,Shashikant,Shatrujet,Sheshkumar,Shivanand,Shivprasad,Shivraj,Shivshakti,Shreshtha,Shrikant,Shriprakash,Shrirang,Shrivardhan,Shriyash,Shubhendu,Siddeshwar,Somnath,Sooryakant,Srikrishna,Srivatsan,Subhajit,Subhasish,Sudhanshu,Sukhdev,Sukhlal,Sukumar,Sumanthra,Sushantraj,Swapneshwar,Swaroop,Tanmaydev,Thakurdas,Tribhuvan,Trimurti,Trishankhu,Tyageshwar,Vaibhavraj,Vajreshwar,Vallabhbhai,Varshanand,Vasishtha,Vedprakash,Vijayanand,Vikramjeet,Vindhyeshwar,Vittaldas,Vitthalrao,Vivasvat,Vrajlal,Vyomkesh,Yadunath,Yamunesh,Yashvardhan,Yogeshwar,Yugandhar,Yuvaraj`.split(","),
-  // EXPANSION: Arabic/Persian A-names
-  aA5: `Adeel,Affan,Afshar,Ahad,Akeel,Akram,Alauddin,Alborz,Almahdi,Altamash,Amaan,Amjad,Aqeel,Ardalan,Arham,Armaghan,Artin,Ashfaq,Ashkan,Atabak,Ayaan,Azarmehr,Azeem,Azfar,Azim,Azmat,Azzam`.split(","),
-  // EXPANSION: Arabic/Persian non-A names
-  aN5: `Bahauddin,Bahadur,Bakhtiar,Barzan,Basir,Behzad,Bilqis,Borhan,Changiz,Dabir,Daud,Dilawar,Dilshad,Ebrahim,Ehtesham,Elham,Erfan,Eskandar,Fahim,Fakhar,Faraz,Fardeen,Farhan,Farouk,Fawad,Feroze,Ferzan,Firdaus,Firooz,Ghulam,Hafeez,Hameed,Hammad,Hassan,Hidayat,Hikmat,Humayun,Hussain,Ihsan,Inayat,Iqtidar,Irshad,Ismat,Izhar,Jafar,Jaleel,Javaid,Jawad,Javed,Kabir,Kaiwan,Kaleem,Kambiz,Kareem,Kasra,Kazim,Khaled,Khashayar,Khurshid,Koorosh,Liakat,Lutfullah,Mahbub,Mahmood,Manzar,Maqbool,Maqsood,Masroor,Mateen,Mazhar,Mehboob,Mehdi,Mehrab,Misbah,Moazzam,Mohsen,Mojtaba,Morshed,Moshfegh,Mozaffar,Murtaza,Naseer,Naushad,Nawab,Nazar,Niloufar,Nouman,Nusrat,Parvez,Pervez,Qamar,Qasim,Raees,Raheel,Rameez,Rashed,Rauf,Riaz,Ruhollah,Rustam,Saadullah,Saboor,Sadruddin,Saeed,Safdar,Sajjad,Sardar,Sarfraz,Shahbaz,Shahid,Shakeel,Shakil,Shamshad,Shehzad,Shoaib,Shuja,Sikandar,Sulaiman,Syed,Tahsin,Talat,Taufiq,Tawfik,Toufiq,Usman,Waleed,Waqas,Yaqub,Zafar,Zahoor,Zeeshan,Zulfiqar`.split(","),
-  // EXPANSION: African names
-  fN5: `Abena,Adama,Adamu,Adewuyi,Adongo,Afikpo,Agbor,Aguda,Ajayi,Akande,Amadou,Amaka,Antwi,Bankole,Bemba,Biram,Bitrus,Boateng,Chidubem,Chiemeka,Chinedu,Chinonso,Chukwudi,Chukwuka,Dada,Danquah,Demba,Desta,Diallo,Dike,Dumebi,Efosa,Ekow,Ekwueme,Enitan,Essien,Etim,Ewuare,Eyitayo,Ezinne,Foluke,Gbenga,Godswill,Ibrahim,Idowu,Ifeanyi,Ikenna,Immanuel,Isioma,Jibril,Jideofor,Kalu,Kangni,Kayode,Kelechi,Koffi,Koranteng,Kwadwo,Kwasi,Lanre,Machel,Madu,Mandla,Mensah,Modupe,Moussa,Mthunzi,Mustapha,Mwamba,Nduka,Ngozi,Nkemdirim,Nnaemeka,Nneka,Nwachukwu,Nwankwo,Nwosu,Obioma,Ochieng,Odion,Oghene,Omoruyi,Onyeka,Osagie,Owusu,Oyewale,Sanusi,Seun,Sipho,Siyabonga,Taiwo,Tamuno,Temidayo,Thabo,Thulani,Tochukwu,Tunde,Wanjiru,Yeboah,Yinka,Yusuf,Zainab,Zamani,Zanele,Zinhle,Zola,Zubairu`.split(","),
-  // EXPANSION: Global A-names
-  gA5: `Aamund,Achille,Achill,Adalric,Adalwin,Adolphe,Agoston,Agustin,Aimon,Alarik,Albano,Alberic,Alcander,Alcuin,Aldebrand,Aldous,Alembert,Alerion,Alessio,Alfonse,Algernon,Alirio,Alistair,Almeric,Almiro,Alois,Alonzo,Alphonso,Altan,Aluisio,Alvino,Amadis,Amadou,Amalric,Amancio,Amato,Ambroise,Amias,Amiell,Amleto,Amnon,Androcles,Angilbert,Anselme,Antero,Apelles,Araldo,Arbogast,Arcadio,Argento,Argilao,Ariston,Arkady,Arminio,Arnaldo,Arnfried,Arnolfo,Arsenio,Artemon,Arvid,Asterion,Astorik,Atilio,Atlante,Auberon,Auguste,Aurelien,Aurelio,Ausonio,Avigdor,Avraham,Axl`.split(","),
-  // EXPANSION: Global non-A names + architect names
-  gN5: `Baltasar,Barnabe,Basilio,Baudouin,Bengt,Benicio,Berardo,Berislav,Bernabe,Bertil,Bertolt,Bertrand,Bjarke,Bjarne,Blagoj,Blasius,Bogdan,Bogomil,Bohumil,Boleslaw,Borivoj,Borislav,Branko,Bronislav,Caetano,Camillo,Candido,Caradoc,Carloman,Cassiano,Castulo,Cesareo,Cipriano,Cirilo,Claudio,Clemens,Clodoaldo,Columba,Cornelio,Corrado,Cosimo,Cristobal,Dalibor,Dalmazio,Damiano,Dariusz,Demetrio,Didier,Dieter,Dietrich,Dinu,Dionisio,Dirk,Dominik,Donato,Doroteo,Drago,Dragomir,Dragutin,Duarte,Duccio,Edgardo,Edmondo,Efisio,Efrem,Egidio,Eligio,Emeric,Emidio,Emmerich,Engelbert,Eoin,Erasmus,Ercole,Erhard,Ernesto,Esmond,Estevao,Fabrizio,Faliero,Fausto,Feodor,Fernand,Fidelio,Filemon,Fiorenzo,Florentin,Floriano,Fulvio,Gael,Galeazzo,Galileo,Gaspard,Gaspare,Gaudencio,Gauthier,Gavino,Gennaro,Geraldo,Gerardo,Gerhart,Germano,Gervais,Gherardo,Giacinto,Gian,Giancarlo,Gianfranco,Gianluca,Gianmarco,Gianpaolo,Giorgio,Giovanni,Giuliano,Giulio,Giuseppe,Goffredo,Gonzalo,Gottfried,Graciano,Gratien,Graziano,Gregorio,Guelfo,Guglielmo,Guido,Gunnar,Gustavo,Halvard,Hamilcar,Hanno,Hannibal,Harald,Hartmut,Haukur,Hector,Helge,Helmut,Heracles,Herberto,Hernando,Hildebrand,Horacio,Huberto,Hugo,Humbert,Hywel,Ignazio,Istvano,Jacinto,Jacobo,Jaromir,Jaroslav,Jenaro,Joachim,Jolyon,Jovian,Juanelo,Juliusz,Justino,Kaspars,Kazimierz,Kestutis,Kilian,Koloman,Konrad,Krzysztof,Kunibert,Ladislao,Ladislav,Lamberto,Lanfranco,Laszlo,Laurentiu,Leandro,Lech,Leocadio,Leonardo,Leonhard,Leopoldo,Leszek,Leuthar,Liborio,Licio,Lionello,Livio,Lorcan,Lotario,Lothair,Lucano,Luciano,Ludvig,Lupercio,Macario,Manfredo,Marciano,Mariano,Marino,Marzio,Massimo,Mattia,Maurizio,Medardo,Melchior,Melchiorre,Metodio,Mieczyslaw,Mikolaj,Miroslav,Modesto,Narciso,Nardo,Nazario,Nestor,Nicanor,Niccolao,Niccolo,Nikolaj,Norberto,Nunzio,Odoacer,Olimpio,Onofrio,Opilio,Orazio,Orfeo,Orlando,Osvaldo,Otello,Othmar,Ottavio,Ottone,Pancrazio,Paolo,Pasquale,Patricio,Petronio,Pierluigi,Piero,Placido,Pompeo,Porfirio,Primo,Procopio,Prudencio,Radoslav,Radovan,Raffaele,Raimondo,Rainaldo,Rainiero,Raniero,Ranulfo,Remigio,Renato,Riccardo,Rinaldo,Roberto,Rocco,Rodolfo,Rodrigo,Rogelio,Rolando,Roque,Rosario,Ruggero,Ruperto,Rutger,Sandro,Santino,Saverio,Severo,Sigfredo,Silvano,Silvestre,Simone,Stanislav,Stefano,Stiliano,Sulpicio,Svatopluk,Teodoro,Terenzio,Teseo,Tiberio,Timoteo,Torquato,Trajan,Ugo,Umberto,Urbano,Valerio,Venceslao,Venanzio,Vincenzo,Virgilio,Vittorio,Vladislav,Vlastimil,Vojislav,Vratislav,Wenceslao,Wladyslaw,Wolfhart,Wratislaw,Zaccaria,Zbigniew,Zdravko,Zenobio,Zenone,Zoran,Zvonimir,Tadao,Renzo,Bjarke,Moshe,Cesar,Santiago,Rem,Carlo,Eero,Balkrishna,Thom,Sverre,Gottfried,Luis,Kengo,Frei,Alvaro,Enric,Emilio,Ettore,Giancarlo,Pier,Cino,Bijoy,Cedric,Zvi,Rafael,Antoni,Buckminster,Ludwig,Ieoh,Mies,Aldo,Addison,Corbu,Alvar,Kisho,Frei,Oscar,Norman,Eladio,Myron,Denys,Berthold,Eileen,Gottfried,Diebedo,Balkrishna,Hafeez,Bijoy,Laurie,Dermot,Grafton,Jorn,Kenzo,Arata,Pritzker,Sedad,Sverre,Glenn,Thom,Morphosis,Wolf,Jeanne,Lacaton,Vassal,Doshi,Siza,Souto,Moneo,Nouvel,Ando,Piano,Gehry,Hadid,Murcutt,Utzon,Niemeyer,Barragan,Kahn,Aalto,Tange,Pei,Stirling,Meier,Venturi,Pritzker,Sejima,Mendes,Zumthor,Nouvel,Chipperfield,Pawson,Libeskind,Saarinen,Breuer,Jacobsen,Neutra,Schindler,Loos,Gaudi,Palladio,Vitruvius,Sinan,Bernini,Wren,Nash`.split(","),
-  // EXPANSION: Korean names
-  kN5: `Byeongjun,Chanho,Chanwoo,Daewon,Donghyun,Dongmin,Doojin,Eunho,Geonho,Gunho,Gyumin,Hanjin,Hanul,Hasung,Heejun,Hosung,Hyeonjun,Hyukjin,Inho,Jaehoon,Jaeyoung,Jeonghoon,Jihan,Jinwoo,Joohyun,Joonho,Junghwan,Junhyung,Junwon,Kijoon,Kyungmin,Minchan,Minjin,Minwoo,Myungho,Namhoon,Sangjin,Sangwoo,Seokhoon,Seokjin,Seongmin,Seungjin,Seungmin,Seungyoon,Soojin,Sungho,Sungjin,Sungwoo,Taehwan,Taewoo,Woohyun,Woojung,Yeonho,Yongjin,Youngho,Youngjin,Youngsoo,Yuhwan`.split(","),
-
-  // EXPANSION BATCH 2: Indian A-names
-  iA6: `Aashray,Abhyuday,Adheendra,Adwaithya,Agneepath,Amritbodh,Ayushmanraj`.split(","),
-
-
-  // CREATIVE FIGURES — first names of famous architects, artists, painters, sculptors, designers
-  // Architects: Tadao (Ando), Renzo (Piano), Alvar (Aalto filtered), Eero (Saarinen), Mies, Rem (Koolhaas), Bjarke (Ingels), Zaha (Hadid), Kengo (Kuma), Moshe (Safdie)
-  // Artists/Painters: Basquiat→Jean-Michel, Caravaggio→Michelangelo, Vermeer→Johannes, Klimt→Gustav, Rothko→Mark, Balthus, Kandinsky→Wassily, Klee→Paul filtered
-  // Sculptors: Brancusi→Constantin, Rodin→Auguste, Giacometti→Alberto, Noguchi→Isamu, Kapoor→Anish filtered
-  // Designers: Eames→Charles, Dieter (Rams), Massimo (Vignelli)
-  creativeA: `Alvar,Anselm,Antoni,Alberto,Auguste,Amedeo,Andrei,Antony`.split(","),
-  creativeN: `Tadao,Renzo,Eero,Rem,Bjarke,Kengo,Moshe,Leoh,Thom,Toyo,Sverre,Enric,Balkrishna,Isamu,Christo,Constantin,Raphael,Lucian,Rufino,Ettore,Massimo,Dieter,Olafur,Subodh,Raqib,Ravinder,Tyeb,Vivan,Giotto,Titian,Cellini,Miro,Dali,Calder,Basil,Eames`.split(","),
-
-  // REPLACEMENT BATCH: Indian A-names (1-3 syllables)
-  repIA: `Abhin,Achir,Adesh,Adhav,Agraj,Ahish,Ajay,Akash,Akrit,Akshin,Alosh,Amay,Amish,Amod,Amprit,Anay,Angesh,Anik,Ankur,Anmay,Ansh,Aprit,Arjun,Arnav,Arpit,Arush,Ashir,Atesh,Atul,Avir,Avni,Ayaan,Ayush,Achir,Adrit,Ahil,Ajay,Akash,Alank,Amay,Anav,Ankush,Anuj,Arham,Arjit,Arnav,Arpit,Arush,Ashir,Atesh,Atul,Avni,Ayush,Adith,Agrit,Ahir,Ajeet,Akshat,Alok,Ambuj,Anagh,Ankesh,Anshu,Arhan,Arnab,Arpit,Arush,Ashwin,Atman,Avish,Axat,Aham,Agni,Ajay,Akshay,Ambar,Anand,Ankur,Anmol,Arham,Arnav,Arpit,Arush,Ashish,Atri,Aviral,Ayan,Abhay,Adarsh,Adhrit,Adit,Advait,Agastya,Akrit,Alok,Amrit,Ankit,Apurv,Arish,Ashrav,Avyan,Ayog`.split(","),
-
-  // REPLACEMENT BATCH: Indian non-A names (1-3 syllables)
-  repIN: `Badal,Baldev,Bharat,Bhavya,Bhuvan,Bijal,Bindu,Birbal,Bodhi,Budh,Chahel,Charit,Chetan,Chintan,Chirag,Daksh,Darsh,Darshit,Deepak,Devak,Devesh,Dhanush,Dhruv,Dipal,Diyan,Druv,Dulal,Ekam,Eshan,Fardeen,Falak,Falgun,Gagan,Gaurav,Girish,Gopal,Govind,Gulzar,Gunjan,Gurdev,Hansraj,Hardik,Harish,Harman,Hemant,Hemraj,Hitesh,Idhant,Ishaan,Ishvar,Jagat,Jaidev,Janak,Jayant,Jivin,Kabir,Kairav,Kalash,Kalpit,Kamal,Kanav,Keshav,Ketan,Kiran,Kishor,Komal,Kundan,Kushan,Laksh,Laxman,Lokesh,Madhav,Manan,Manav,Manish,Mihir,Milap,Mohit,Moksh,Nakul,Naman,Naveen,Nilesh,Nimish,Nirav,Nirmal,Nishant,Ojasvi,Omkar,Paavan,Pallav,Param,Parth,Pavak,Pavan,Piyush,Prabhav,Pranav,Pranjal,Prasad,Pratik,Pravin,Priyan,Pulkit,Rachit,Raghav,Rajat,Rakshit,Ranvir,Raunak,Ridhan,Rishaan,Ritesh,Ritvik,Rohit,Rudra,Rushil,Sachin,Sahil,Saksham,Samay,Samir,Sanjit,Sarthak,Satish,Satvik,Sharad,Shravan,Siddh,Soham,Sudhir,Suhaan,Sujan,Suraj,Tanay,Tanish,Tapan,Tarun,Tejas,Trilok,Tushar,Uday,Ujjwal,Umang,Utkarsh,Varun,Vedant,Veeraj,Vihaan,Vikash,Vimal,Vinit,Viraj,Vishnu,Vivaan,Vivek,Yash,Yuvan,Zubin`.split(","),
-
-  // REPLACEMENT BATCH: Arabic/Persian short names
-  repAP: `Bahir,Bashir,Bilal,Burhan,Dara,Ehsan,Emad,Faisal,Faraz,Farhad,Farzan,Feroz,Ghazi,Habib,Hafiz,Hakim,Hamid,Hamza,Haris,Hasan,Husam,Idris,Imran,Iqbal,Irfan,Israr,Jabir,Jalil,Jamil,Junaid,Kamil,Karim,Kashif,Khalid,Laith,Luqman,Mahir,Majid,Malik,Mansur,Mazin,Mirza,Mobin,Murad,Mustaf,Nabil,Nadim,Naqib,Nasim,Navid,Nazir,Nizar,Omid,Pervez,Parviz,Qadir,Qasim,Rafiq,Rashid,Rayan,Rehan,Rustam,Sabir,Sadiq,Safwan,Sahir,Saif,Sajid,Salim,Saqib,Sharif,Siraj,Sultan,Tahir,Tariq,Wasim,Yasir,Yusuf,Zafar,Zahid,Zahir,Zaid,Zakir,Zarif`.split(","),
-
-  // REPLACEMENT BATCH: Arabic/Persian A-names short
-  repAA: `Adil,Afzal,Ahsan,Akram,Alim,Ameen,Amin,Amir,Amjad,Anwar,Aqil,Arif,Arslan,Asad,Ashraf,Asim,Atif,Awais,Ayaz,Aydin,Azhar,Azim,Aziz,Azlan`.split(","),
-
-  // REPLACEMENT BATCH: African short names
-  repAF: `Bayo,Biko,Chidi,Chike,Dayo,Diallo,Duma,Ekon,Ekene,Emeka,Femi,Gamba,Ife,Jabari,Jahi,Jelani,Kamau,Kato,Kgosi,Kofi,Kwame,Kwesi,Lekan,Lamin,Mansa,Nkosi,Nnamdi,Obinna,Obi,Omari,Paki,Rafiki,Sekou,Segun,Simba,Sani,Tendai,Themba,Tobi,Uche,Wale,Yaw,Zaire,Zaki,Zuberi,Zuri`.split(","),
-
-  // REPLACEMENT BATCH: African A-names short
-  repAFA: `Abeo,Ade,Adisa,Ajani,Akachi,Akin,Amadi,Amara,Asante,Athi,Atsu,Ayize,Azibo`.split(","),
-
-  // REPLACEMENT BATCH: Global short names (1-3 syllables)
-  repGN: `Bastian,Beckett,Bjorn,Blaise,Boden,Bram,Brennan,Bruno,Cael,Callum,Caspian,Cassius,Cedric,Cillian,Colm,Cormac,Cosmo,Dante,Declan,Dion,Dorian,Edric,Einar,Elio,Emil,Enzo,Erik,Espen,Evren,Fabian,Felix,Fionn,Florian,Flynn,Gael,Galen,Gareth,Gavril,Griffon,Gustaf,Hadrian,Halvar,Hamish,Henrik,Holden,Hugo,Iker,Ingmar,Innes,Ivar,Jasper,Jorin,Jovan,Jules,Kai,Kaspar,Kellan,Kieran,Killian,Klaus,Lachlan,Larkin,Lars,Laszlo,Laurent,Leander,Leif,Lennart,Leon,Lorcan,Luca,Lucien,Magnus,Marcelo,Marcel,Marek,Mathis,Milo,Nico,Niall,Nikolai,Nils,Noel,Odin,Orion,Orson,Oscar,Oskar,Otto,Pascal,Phelan,Quillan,Rafael,Ragnar,Rainer,Raphael,Remy,Rocco,Roland,Roman,Ronan,Rowan,Rune,Saxon,Silas,Simeon,Soren,Stellan,Stig,Thane,Theo,Tobias,Tomas,Torben,Tristan,Ulric,Valko,Vaughn,Vesper,Viggo,Viktor,Willem,Wren,Xavi,Yohan,Zander,Zoltan`.split(","),
-
-  // REPLACEMENT BATCH: Global A-names short
-  repGA: `Adair,Adler,Alaric,Albin,Aldric,Aldrin,Alden,Alfons,Ambrose,Anders,Andre,Angus,Anton,Archer,Arden,Arlen,Armand,Arne,Arno,Artem,Asher,Athos,Atlas,Auden,August,Aurel,Axel`.split(","),
-
-  // REPLACEMENT BATCH: Korean short names
-  repKN: `Baram,Chansol,Daeho,Dohyun,Hajun,Haneul,Inwoo,Jaeho,Jiho,Jiwon,Junseo,Kihan,Minjun,Minho,Rian,Seojun,Siwoo,Taeho,Wonjin,Yejun,Yuchan`.split(","),
-
-  // EXTRA SHORT NAMES BATCH: Indian A (fresh, 1-3 syl)
-  xIA: `Abhan,Achir,Adhish,Adrit,Aghat,Ahvan,Ajas,Akhand,Akshan,Alish,Amash,Ambik,Amresh,Anbil,Angir,Anish,Ankrit,Anmay,Antim,Apresh,Aran,Archak,Aresh,Arjav,Arkam,Arnal,Artik,Arvan,Ashvak,Atish,Avdesh,Avkash,Avrit,Axar,Ayam,Ayuj,Azbir,Adrit,Ahish,Ajen,Akrit,Amav,Anuj,Ardhak,Ashvir,Atrek,Avjit`.split(","),
-
-  // EXTRA SHORT NAMES BATCH: Indian non-A (fresh, 1-3 syl)
-  xIN: `Badal,Bakul,Bansil,Beejal,Bhavik,Bhrigu,Binay,Bodhit,Budhan,Chaitan,Chaman,Charan,Chinar,Chiresh,Chitrak,Dabir,Damak,Darpan,Dayesh,Debak,Devak,Devkrit,Dhiman,Dhiresh,Dhiyan,Digant,Dinkar,Divit,Druhin,Dulaj,Ekant,Ekbal,Falish,Gandiv,Ganik,Garjan,Gatik,Ghrishan,Girdhar,Gokul,Gopesh,Govil,Gulshan,Guneet,Gurmit,Hansik,Harbir,Harkrit,Harnam,Harsh,Hemkrit,Herish,Himesh,Hiten,Idhant,Ikshan,Ilesh,Indu,Ishrit,Jabir,Jagjit,Janmay,Jasrit,Jayesh,Jeetik,Jhanak,Jignesh,Jogesh,Jyotik,Kailas,Kalpit,Kamesh,Kanish,Kapish,Karnesh,Kashyap,Kaustav,Ketak,Ketish,Keshit,Khalid,Kinnit,Kirtik,Koushik,Krishiv,Kumrit,Kundan,Kushik,Lakshit,Latish,Lavit,Likhit,Lokrit,Madhur,Mahesh,Mainak,Malhar,Mamrit,Mangal,Mankrit,Maulik,Mayur,Mehan,Mihit,Mitesh,Mokshit,Mudit,Mukesh,Nachiket,Nagrit,Nakrit,Namit,Nandak,Naresh,Navik,Neelaj,Nidhan,Nihir,Nikhit,Nipun,Nirvik,Niyam,Ohmik,Ojasik,Padmaj,Pankaj,Parash,Paresh,Parmit,Pavish,Pinak,Prabal,Prachir,Pradyut,Prajit,Prakrit,Pranjit,Pratul,Pravir,Premjit,Pritam,Pritvik,Pulin,Pushkar,Rachit,Radhik,Rajvir,Ramik,Ranjit,Rasik,Ravish,Rishin,Ritesh,Rochit,Rohak,Ruchir,Rudrik,Rupal,Rushik,Sabal,Sachit,Sadhik,Sahaj,Saket,Samrit,Sandip,Santrit,Sarvit,Shalin,Shamik,Shardul,Shekhar,Shivaj,Shreyam,Shubham,Siddak,Sindrit,Smaran,Soumik,Subir,Suchit,Sudhit,Sukrit,Sulabh,Sumarit,Sumit,Sunil,Sunrit,Suprit,Suvan,Takat,Tamish,Taprit,Tarush,Tehan,Tejvir,Thakur,Tirthan,Trijal,Trivir,Tulaj,Ujash,Umrit,Uprit,Utpal,Vaidik,Vajrit,Vakrit,Vansaj,Vardhit,Vasant,Vatsal,Vedik,Vihrit,Vikrit,Vinit,Vishak,Vivrit,Vyomit,Yajat,Yamrit,Yashrit,Yuvrit,Zehrit`.split(","),
-
-  // EXTRA SHORT NAMES BATCH: Arabic/Persian (fresh, 1-3 syl)
-  xAP: `Bahram,Bakar,Bakhit,Bashar,Bazil,Behzad,Bijan,Borhan,Dabir,Dalir,Danish,Darvish,Dilshad,Ebad,Ehab,Ejaz,Erfan,Eshaq,Fahad,Fakhr,Falak,Faran,Farzam,Firuz,Ghasem,Ghazal,Hadid,Hafez,Hajir,Halim,Hamdan,Haqim,Hashir,Hazim,Hikmat,Hormuz,Iltaf,Ishtaq,Jafar,Jahid,Jalal,Jameel,Javid,Jihad,Kasim,Kaveh,Khadir,Khaleel,Khasim,Latif,Luqman,Madih,Mahbub,Mahzun,Majeed,Makin,Maltuf,Marjan,Masrur,Mirbaz,Misbah,Mohsin,Mubin,Mufid,Muktar,Nadir,Nafiz,Najib,Naqash,Nashit,Nishar,Nuraz,Obaid,Parvez,Qudrat,Rabih,Rafid,Rashad,Ridhwan,Rizq,Sabah,Saghir,Sajjad,Sakhr,Samih,Sardar,Shahin,Shahir,Shakir,Shukri,Sikandar,Suheil,Taufiq,Wajid,Waleed,Yaqub,Zafir,Zaheer,Zamir,Zubaid`.split(","),
-
-  // EXTRA SHORT NAMES BATCH: Global (fresh, 1-3 syl)
-  xGN: `Boden,Bolton,Brandt,Bridger,Caius,Callan,Caradoc,Carver,Cedric,Clifton,Corin,Creed,Crispin,Dalton,Dashiel,Dermot,Devlin,Dougal,Drummond,Egan,Eldon,Elric,Emeric,Espen,Evander,Falco,Fenris,Forrest,Fulton,Garrick,Gavril,Hadley,Halvar,Hamish,Harlan,Hartley,Helios,Henrick,Hewitt,Hollis,Idris,Ignac,Inigo,Irving,Isak,Jareth,Jensen,Jorin,Kellan,Kilian,Lachlan,Lambert,Langdon,Laurent,Leopold,Linton,Lorcan,Lorenz,Lucien,Lyric,Magnus,Marek,Merrick,Montague,Mordecai,Norbert,Oberon,Odhran,Oleander,Orestes,Osric,Paavo,Pascale,Percival,Ragnar,Rainer,Raylan,Redmond,Riordan,Roderic,Rupert,Sagan,Saxon,Simeon,Sorin,Spencer,Stellan,Theron,Thorin,Thurston,Tiernan,Ulric,Viktor,Walden,Werner,Wilder,Wulfric,Yorick,Zenon`.split(","),
-
-  // FINAL TOP-UP: more fresh 1-3 syllable names
-  topIA: `Abhrij,Adraj,Aghat,Ahvan,Ajesh,Akshar,Alish,Ambir,Amvaj,Anchir,Angraj,Ankrit,Anshik,Aprit,Archij,Ardhan,Arjesh,Arkash,Arshan,Ashvij,Atraj,Avdhir,Avish,Axhir,Ayrit,Azvir`.split(","),
-  topIN: `Bakshi,Bandhir,Bharat,Bhavit,Bhumir,Chandak,Charuj,Chatur,Dabhir,Dakshit,Darpak,Devjit,Dhimat,Dikshit,Dravit,Druvin,Ekrit,Falesh,Ganvir,Gatish,Gautam,Ghalib,Girvit,Guljit,Gunvir,Hakrit,Hanjir,Harmit,Hasrit,Hetuk,Hritvij,Inaksh,Ishrit,Jagrit,Jaldik,Jasvir,Jayrit,Jivant,Kalpaj,Kanvir,Karpit,Kashvit,Keshan,Kishvir,Korvit,Krisham,Lakshaj,Latrit,Madhrit,Mahrit,Malkit,Manbir,Manjit,Maulit,Mehrit,Minhaj,Mitrit,Mohrit,Mukhrit,Nakrit,Nandrit,Narvit,Navrit,Nihrit,Nimrit,Nishrit,Ojrit,Omvir,Pakvit,Palmit,Panjit,Parvit,Premvit,Pujrit,Rajvit,Ranbir,Ranjeet,Rashvit,Ravjit,Rishvir,Rojvit,Rubrit,Sachvir,Samrit,Sanjrit,Sarvir,Sehvit,Sharjit,Shivrit,Shreevit,Smriti,Sohnvir,Subrit,Surjit,Tajvir,Tanrit,Tarvit,Tehjit,Trivit,Ujrit,Vaidit,Vanrit,Vihrit`.split(","),
-  topAP: `Bahram,Basrit,Dalvir,Ehrit,Fakrit,Ghafir,Hakrit,Ikvir,Jafrit,Kahrit,Lajvir,Mahrit,Najrit,Pahrit,Rakhir,Sahrit,Tahrit,Vajrit,Wahrit,Zahrit`.split(","),
-  topGN: `Becham,Bjarn,Branik,Caspir,Dalric,Edvin,Falrik,Gavran,Halvir,Ivorik,Jorvik,Kasrik,Lorvik,Mavrik,Nilvan,Osrik,Pavrik,Quilvan,Ravnik,Selrik,Telvin,Ulvar,Valrik,Wilvan,Xandrik,Zelvan`.split(","),
+  i0: `Avinash,Arinav,Avni,Abhinav,Ayan,Arunesh,Aviraj,Avirath,Adhidev,Advik,Amara,Amaro,Amato,Amay,Amitav,Amrit,Ankur,Archan,Arihan,Arihant,Arnav,Arun,Ashvin,Avani,Avikram,Avir,Avnish,Mehan,Rayan,Rishin,Roshan,Sarvin,Suvidh,Veeraj,Vikrit,Abeer,Abhay,Abheet,Abhijit,Abhijnan`.split(","),
+  i1: `Abhik,Abhilash,Abhimand,Abhineet,Abhir,Abhiram,Abhirath,Abhirup,Abhisek,Abhoy,Abhyuday,Achint,Achintya,Achir,Achyut,Adarsh,Adesh,Adhir,Adhiraj,Adhish,Adhrit,Adhvan,Adhvik,Adhyant,Adinath,Adit,Adith,Aditya,Adrit,Adrith,Advait,Advay,Adyant,Agastya,Agneya,Agni,Agniv,Agraj,Agrim,Ahil`.split(","),
+  i2: `Ahilan,Ahvan,Ajay,Ajeet,Ajinkya,Ajit,Ajitesh,Akash,Akhil,Akrit,Akshaj,Akshan,Akshar,Akshat,Akshay,Akshit,Akul,Alankrit,Alok,Aman,Amar,Amarjit,Amartya,Ambar,Ambuj,Amey,Amin,Amish,Amit,Amlan,Amod,Amogh,Amol,Amresh,Amrish,Amulya,Anagh,Anand,Anant,Ananth`.split(","),
+  i3: `Anav,Anay,Angad,Angiras,Anik,Animesh,Anirban,Anirvan,Ankit,Anmol,Anoop,Anshik,Anshu,Anshul,Anshuman,Antim,Anubhav,Anukalp,Anupam,Anurag,Anuvrat,Apramey,Apurv,Aradhya,Aranyak,Aravind,Archish,Archit,Ardhan,Aresh,Arham,Arhan,Arijit,Arik,Arin,Arindam,Arish,Arishrav,Arjav,Arjit`.split(","),
+  i4: `Arkav,Arkesh,Arman,Arnab,Arnesh,Arpit,Arshik,Artham,Arthav,Arush,Arvan,Arvid,Arvind,Ashish,Ashok,Ashrav,Ashrit,Ashmit,Ashutosh,Ashvat,Ashvir,Atharv,Atharvan,Athishay,Atiksh,Atish,Atman,Atmadev,Atreya,Atul,Atulya,Avdesh,Avdhesh,Avdhut,Avighna,Avijit,Avijot,Avikesh,Avikalp,Avikshit`.split(","),
+  i5: `Avilash,Avimukt,Aviral,Avirup,Avish,Avishkar,Avitaj,Avitej,Avjit,Avjot,Avkash,Avkrit,Avleen,Avlok,Avneet,Avnidh,Avrit,Avtej,Avtesh,Avyan,Avyansh,Avyay,Avyukt,Avyukth,Axat,Ayankrit,Ayansh,Ayojan,Ayush,Badal,Bharat,Bhavin,Bodhi,Brijesh,Chandan,Chetan,Chinmay,Chirag,Daksh,Darsh`.split(","),
+  i6: `Darshil,Dev,Devaj,Devang,Devansh,Dhairya,Dhanush,Dhruv,Diyan,Divit,Druv,Druvin,Ekansh,Eshan,Falgun,Garvit,Gaurav,Girish,Govind,Gunvir,Hari,Hardik,Harsh,Hemang,Hemant,Hiten,Jai,Jayant,Jayesh,Jivin,Kabir,Kairav,Kaivalya,Kalash,Kalpit,Kamesh,Kanav,Kanish,Kanishk,Kapish`.split(","),
+  i7: `Kartik,Kashyap,Kaushal,Kavish,Kavyam,Keshav,Kethan,Keval,Kiran,Kirtan,Kishore,Koushik,Kovidh,Krishiv,Krish,Kunal,Kundan,Kunesh,Kushan,Kushagr,Kushant,Laksh,Lakshit,Lokesh,Madhav,Madhur,Madhurav,Mahavir,Mainak,Makarand,Malhar,Manan,Manav,Manish,Mangal,Manojit,Manveer,Manvith,Maulik,Mayank`.split(","),
+  i8: `Mayansh,Mayur,Mihir,Milap,Milind,Mitesh,Mitransh,Mithilesh,Moksh,Mokshit,Mohan,Mrigank,Mudit,Mukul,Mukund,Naman,Namit,Naveen,Navik,Neeraj,Neil,Nikhil,Nimish,Nipun,Nirav,Nirmal,Nishant,Niyam,Ojas,Ojasvi,Om,Omkar,Pankaj,Param,Paresh,Parth,Pavan,Pinak,Prabal,Prajit`.split(","),
+  i9: `Prakrit,Pranav,Pranit,Prasad,Pratham,Pratik,Pravin,Prithvi,Pritam,Pulkit,Pushkar,Rachit,Raghav,Raghuv,Raj,Rajat,Rajveer,Rajvir,Rakshit,Ramesh,Ramik,Ranbir,Ranjit,Rangav,Ranvir,Rasik,Rashmit,Raunak,Ravi,Ravikrit,Ravish,Reyansh,Rian,Ridhan,Rishabh,Rishi,Ritesh,Rituparn,Ritvik,Rochak`.split(","),
+  i10: `Rohak,Rohit,Ropesh,Roshik,Ruchir,Rudhir,Rudra,Rudransh,Ruhin,Rupak,Rushil,Rushabh,Sachin,Sachidh,Sahaj,Sahil,Saket,Samar,Samarth,Sameer,Samidh,Samprit,Sambhav,Sanchit,Sandeep,Sanjit,Santosh,Sarthak,Sarvit,Satish,Satvik,Shalin,Shamik,Sharad,Shardul,Sharvil,Shashank,Shekhar,Shivam,Shivansh`.split(","),
+  i11: `Shravan,Shresth,Shreyash,Shreyas,Shubham,Siddhesh,Siddh,Siddhanth,Soham,Soumil,Subash,Subir,Sudhir,Sumant,Sumedh,Sumit,Sunrit,Suprit,Suraj,Surya,Swaraj,Taksh,Tamish,Tanay,Tanish,Tapan,Tarun,Tejas,Tejvir,Trilok,Tushar,Uday,Ujash,Ujjwal,Umang,Utkarsh,Vaidik,Vaibhav,Vajrit,Vandish`.split(","),
+  i12: `Vanraj,Varadh,Vardhan,Vardhit,Varen,Varish,Varun,Vasanth,Vatsal,Ved,Vedant,Vedansh,Veer,Vibhav,Vidyut,Vihrit,Vijeth,Vikram,Vikrant,Vimal,Vinay,Vineet,Vinesh,Vinit,Vir,Viraj,Viresh,Vishak,Vishrit,Vishrut,Vivek,Vivrit,Yajat,Yash,Yuvan,Avinay,Avindra,Avijay,Avikant,Avijeet`.split(","),
+  i13: `Avitesh,Avishar,Avileen,Avikrant,Avitark,Avnidhar,Avijval,Aviketh,Avitav,Avigyan,Avijnan,Avikash,Arindham,Arishan,Arjitav,Arnivash,Arnavish,Arishdev,Arjunvir,Arindav,Arjitmay,Arhamvir,Arinkrit,Arjitnam,Arunkrit,Arinman,Arindra,Arishant,Arnavraj,Arpanvir,Arishvir,Amritdev,Amoghraj,Ameydev,Amoghvir,Amritesh,Amolak,Amvir,Amritpal,Amritkrit`.split(","),
+  i14: `Amoghdhar,Amritvan,Ameyraj,Ambarish,Adambir,Adhyapan,Advikam,Agnikesh,Ahankrit,Akhyansh,Amardeep,Ambikvir,Anandvir,Anantdev,Anashvar,Ankurvir,Antarman,Archakam,Atharvish,Athisvir,Atishveer,Atmabodh,Avadhvir,Avyaydev,Ayandev,Ayanesh,Ayantej,Ayanvir,Ayamrit,Adhinav,Adhimukt,Adishvar,Advayam,Agnikrant,Ahirvad,Ajayanth,Akhilnath,Anandmay,Anantpur,Anantrup`.split(","),
+  i15: `Aneekrit,Anshvit,Anugyam,Apurvansh,Arimardh,Balvir,Bharatram,Bhuvanesh,Brahmdev,Chanakya,Chandresh,Chiragjit,Dakshraj,Darpanvir,Devprit,Dhanvir,Dhruvraj,Divyesh,Druvansh,Eklavya,Gauravjit,Girivir,Gopalvir,Gunavir,Harivir,Hemkrit,Hridyesh,Indravir,Jagdish,Jaiveer,Janakraj,Jashvir,Jayakrit,Jinveer,Jivakrit,Jyotirish,Kalashvir,Kamdevraj,Kashvir,Kavindra`.split(","),
+  i16: `Kedarvir,Keshabh,Kishenvir,Kokilvir,Kundanvir,Lakshraj,Lokprit,Madhavraj,Malkhan,Manvikram,Medhavir,Meghdut,Mohanjit,Mokshvir,Nakshatr,Nalinvir,Narindra,Navjit,Neelkanth,Nikhilvir,Nirantar,Nishkarsh,Nrisimha,Ojasvir,Padmajit,Parakram,Parikshat,Pavankrit,Prabhakar,Pradyumna,Prajvalan,Pranalvir,Prantosha,Pratapvir,Prayagraj,Purnvir,Pushpraj,Rachitdev,Rajvikram,Ramkrit`.split(","),
+  i17: `Ranbankur,Ranvijay,Ratnavir,Ravindra,Riddhiman,Rochakdev,Rohanvir,Rukmangad,Sachidev,Sagarjit,Sahajdev,Samritvir,Sanatkrit,Sandipvir,Sarvjit,Shankvir,Sidhvir,Somadev,Subhkrit,Sumanvir,Suryakant,Suryavir,Tapasvir,Tarinvir,Tejashvir,Tribhuvan,Tusharvir,Udayraj,Ujjvaljit,Vajravir,Vanavir,Vibhorvir,Vidhyut,Vijaydev,Vikashdev,Vipulvir,Vishwajit,Vivekjit,Vrindavan,Yajnavir`.split(","),
+  i18: `Yamunvir,Yogeshvir,Yudhvir,Yuvrajvir,Avantik,Avdhutesh,Avhijit,Avishkant,Avneetpal,Avrindra,Avtarjit,Avyaktam,Arjitraj,Arkeshvir,Arnabdev,Arnavdev,Arpanraj,Arthvir,Arunraj,Arushdev,Arvindraj,Ameyatman,Amoghdev,Amritraj,Bhadra,Bhanu,Bhavesh,Bheem,Bhishma,Bijal,Bindu,Birbal,Bodhan,Brahm,Chaitanya,Champak,Chandran,Chapal,Charak,Charvik`.split(","),
+  i19: `Chetanvir,Chintan,Daman,Darpan,Dayaram,Deepak,Deval,Devdan,Devkrit,Dhaval,Dhimant,Dhriti,Ekadant,Ekaraj,Ekbal,Elangesh,Gandharv,Gaurish,Ghanvir,Gokarn,Gopalkrit,Gulab,Gunakar,Gurudatt,Gyandev,Haimavat,Hansraj,Harekrit,Harihar,Hemkant,Himayu,Hiranyak,Ilakrit,Indranil,Inesh,Jagmeet,Jaimal,Jalaj,Janak,Jashith`.split(","),
+  i20: `Jayaram,Jheelan,Jitendra,Joginder,Kaladhar,Kamban,Kamran,Kangkan,Kankana,Kantilal,Kapildev,Karthikey,Kashvant,Kayamkrit,Kedarnath,Keshivir,Ketav,Khajan,Khatrivir,Kirtiman,Kolahit,Kridhan,Kuladhar,Kumarjit,Kusumraj,Lavkush,Lokraj,Mahabir,Mahipal,Majeet,Malvinder,Manasvin,Mandvir,Mangesh,Manohar,Manthan,Meghanath,Meghvir,Mohinder,Mukutraj`.split(","),
+  i21: `Nabhkrit,Nakulraj,Nandish,Navkiran,Nilambar,Nirbhav,Nishan,Nripal,Padrajan,Panchvir,Panditraj,Paramvir,Paritosh,Pavankirt,Prashikh,Premvir,Pundalik,Pushpan,Raghunath,Rajhans,Rajneesh,Rajnish,Ramdhar,Ramjit,Randhir,Ratanvir,Ravindhar,Ribhukrit,Rijvan,Rituraj,Rochaman,Rudravir,Rupinder,Sahasra,Sambodhi,Sangamvir,Sanyam,Senajit,Sharavir,Shreshtha`.split(","),
+  i22: `Shrinavas,Sivakrit,Somvir,Subodhan,Suchitrav,Sukhvir,Sureshvir,Tanmaydev,Tarakrit,Tattvajit,Thakurvir,Todarmal,Uddhavjit,Ugravir,Unmeshvir,Uttamvir,Vanmali,Vedavrit,Vijudev,Vinayvir,Vishvadev,Vrajesh,Vyomvir,Yagnesh,Yamahit,Yashovir,Yatinkrit,Yoganand,Yuktivir,Zarivir,Avnay,Avdhar,Avjay,Avlesh,Avmit,Avnir,Avprit,Avran,Avsan,Avtan`.split(","),
+  i23: `Ariav,Arindh,Arjay,Arkam,Arnish,Artav,Amnay,Amprit,Amlav,Amvan,Amjay,Amkrit,Adnav,Adkrit,Advan,Adraj,Adnir,Adlav,Adrish,Aknav,Aknir,Aklav,Akdhar,Akraj,Akvan,Akjit,Ashnav,Ashnir,Ashdhar,Ashraj,Ashvan,Ashjit,Ashkrit,Annav,Annir,Andhar,Anraj,Anvan,Anjit,Ankrit`.split(","),
+  i24: `Anlav,Atnav,Atnir,Atdhar,Atraj,Atvan,Atjit,Atkrit,Aynav,Aynir,Aydhar,Ayraj,Ayvan,Ayjit,Aykrit,Devnav,Devnir,Devraj,Devvan,Harnav,Harnir,Harkrit,Harraj,Harvan,Jagnav,Jagnir,Jagkrit,Jagraj,Jagvan,Kalnav,Kalnir,Kalkrit,Kalraj,Kalvan,Mannav,Mannir,Mankrit,Manraj,Manvan,Navnir`.split(","),
+  i25: `Navkrit,Navraj,Navvan,Navdhar,Rajnav,Rajnir,Rajkrit,Rajvan,Rajdhar,Surnav,Surnir,Surkrit,Surraj,Survan,Vednav,Vednir,Vedkrit,Vedraj,Vedvan,Avan,Avash,Avesh,Avin,Avit,Avik,Avaj,Avant,Avith,Avim,Avam,Avut,Avnit,Avdev,Avraj,Avvir,Avpal,Avnav,Avrup,Avvar,Avtav`.split(","),
+  i26: `Avvin,Avram,Avman,Avek,Avil,Avarth,Avayan,Arav,Arash,Arir,Arit,Araj,Arant,Arith,Arim,Aram,Arrit,Arnit,Ardev,Arraj,Arvir,Ardhar,Arrup,Arvar,Arvin,Arram,Arek,Arayan,Amav,Amash,Amesh,Amik,Amaj,Amant,Amith,Amim,Amnit,Amdev,Amraj,Amnav`.split(","),
+  i27: `Amdhar,Amjit,Amrup,Amvar,Amtav,Amvin,Amram,Amman,Amek,Amayan,Adav,Adash,Adin,Adir,Adik,Adant,Adnit,Addev,Advir,Addhar,Adjit,Adrup,Anash,Anesh,Anir,Anit,Anaj,Anith,Anrit,Annit,Andev,Anvir,Anrup,Anvin,Anek,Anayan,Ashav,Ashin,Ashir,Ashit`.split(","),
+  i28: `Ashik,Ashant,Ashith,Ashdev,Ashek,Akav,Akesh,Akin,Akir,Akit,Akik,Akant,Akith,Akdev,Akvir,Akrup,Akvin,Ayav,Ayash,Ayesh,Ayin,Ayir,Ayit,Ayik,Ayant,Ayith,Ayrit,Aydev,Ayvir,Ayvin,Ayayan,Atav,Atash,Atesh,Atin,Atir,Atit,Atik,Atant,Atith`.split(","),
+  i29: `Atdev,Atvir,Atvin,Ajav,Ajash,Ajesh,Ajin,Ajir,Ajik,Ajant,Ajith,Ajdev,Ajraj,Ajvir,Ajnav,Ajjit,Abhav,Abhash,Abhin,Abhit,Abhant,Abhith,Abhdev,Abhraj,Abhvir,Abhnav,Abhjit,Abhvin,Abhek,Devash,Devesh,Devin,Devir,Devit,Devik,Devant,Devith,Devvir,Devjit,Devrup`.split(","),
+  i30: `Devvin,Harash,Haresh,Harin,Harir,Harit,Harik,Harant,Harith,Hardev,Harvir,Harjit,Harvin,Kalesh,Kalin,Kalir,Kalit,Kalik,Kalant,Kalith,Kaldev,Kalvir,Kaljit,Manash,Manesh,Manin,Manir,Manit,Manik,Manant,Manith,Mandev,Manvir,Manjit,Navash,Navesh,Navin,Navir,Navit,Navant`.split(","),
+  i31: `Navith,Navdev,Navvir,Navvin,Navek,Rajash,Rajesh,Rajin,Rajir,Rajit,Rajik,Rajant,Rajith,Rajdev,Rajjit,Rajvin,Surash,Suresh,Surin,Surir,Surit,Surik,Surant,Surith,Surdev,Survir,Surjit,Vedash,Vedesh,Vedin,Vedir,Vedit,Vedik,Vedith,Veddev,Vedvir,Vedjit,Vikash,Vikesh,Vikin`.split(","),
+  i32: `Vikir,Vikit,Vikant,Vikith,Vikdev,Vikraj,Vikvir,Viknav,Vikjit,Virash,Virin,Virit,Virik,Virant,Virith,Virdev,Virraj,Virjit,Kirash,Kiresh,Kirin,Kirir,Kirit,Kirik,Kirant,Kirith,Kirdev,Kirraj,Kirvir,Kirnav,Kirjit,Rinav,Rinash,Rinesh,Rinit,Rinik,Rindev,Rinraj,Rinvir,Rinnav`.split(","),
+  i33: `Rinjit,Sarav,Sarash,Saresh,Sarin,Sarir,Sarit,Sarik,Sarant,Sarith,Sardev,Sarraj,Sarvir,Sarnav,Sarjit,Samav,Samash,Samesh,Samin,Samit,Samik,Samant,Samith,Samdev,Samraj,Samvir,Samnav,Samjit,Sidash,Sidesh,Sidin,Sidir,Sidit,Sidik,Sidant,Sidith,Siddev,Sidraj,Sidvir,Sidnav`.split(","),
+  i34: `Sidjit,Mohin,Mohir,Mohit,Mohik,Mohant,Mohith,Mohdev,Mohraj,Mohvir,Mohnav,Mohjit,Rokash,Rokesh,Rokin,Rokir,Rokit,Rokik,Rokant,Rokdev,Rokraj,Rokvir,Rudin,Rudir,Rudit,Rudik,Rudant,Rudith,Ruddev,Rudraj,Rudvir,Rudnav,Rudjit,Pravir,Pradev,Pratav,Pradish,Pramish,Pravish,Prakash`.split(","),
+  i35: `Pravash,Pratan,Shresh,Shrish,Shrivan,Kushav,Kushit,Kushik,Kushal,Kushraj,Kushvir,Niran,Nirit,Nirik,Nirant,Niresh,Nirish,Nirvir,Nirjit,Nirdhar,Nirman,Nirvan,Dhrishta,Tanav,Tanuj,Tanvir,Tanmav,Tanesh,Tanvik,Rupesh,Rupin,Rupik,Rupant,Rupdev,Rupraj,Rupvir,Lokin,Lokit,Lokant,Lokdev`.split(","),
+  i36: `Lokvir,Loknath,Bhargav,Bhaskar,Bhupati,Chandak,Chandrash,Charanvir,Darshan,Dayakrit,Deepansh,Devdutt,Devrath,Dharamvir,Dheemant,Digjit,Dinakar,Dipankar,Divyansh,Ekagra,Ekchit,Ethan,Farhan,Gajanan,Girivan,Gokulesh,Gyanesh,Harikesh,Harishvar,Hemraj,Hemvir,Himanshu,Idhant,Indresh,Jaivant,Jalesh,Janvir,Jayakant,Jitesh,Jotsna`.split(","),
+  i37: `Kamalesh,Kamdhar,Kamvir,Kanvir,Karnavir,Kartavya,Kavindh,Ketankrit,Kinshuk,Kishorvir,Lavkrit,Mahakrit,Maheshvar,Mahiraj,Malkrit,Manaskrit,Mandarvir,Mantravir,Meghnath,Milankrit,Mitvir,Mohindar,Nagarjit,Nagvir,Narendh,Narottam,Navindh,Navjot,Neelakrit,Niharvir,Nirmit,Nritya,Ojaskrit,Omvir,Padmavir,Pahlaj,Palmit,Paramjit,Paravir,Pavanjit`.split(","),
+  i38: `Pilakrit,Prabhjit,Pradhit,Prajval,Pranakrit,Prashvir,Prayukh,Punarvir,Raginath,Rajindh,Ranajit,Ranchit,Rangvir,Rashvir,Ripujit,Ritivir,Rochvir,Rohankrit,Roshvir,Rujavir,Rupkrit,Saindhav,Sajkrit,Samrith,Sandvir,Santakrit,Saptakrit,Saravkrit,Sarvakrit,Satgur,Shanakrit,Shashvir,Shubhvir,Sidakrit,Sindhuraj,Somakrit,Sthankrit,Sudhakrit,Sukhjit,Sunkrit`.split(","),
+  i39: `Suprith,Surakvir,Tarkrit,Udakrit,Ujvalkrit,Umakrit,Upakrit,Urjavir,Ushakrit,Vajrakrit,Valkrit,Vanakrit,Varkrit,Vasukrit,Vicharvir,Vidyavir,Vijvir,Vireshvar,Vriddhit,Yajvir,Yamkrit,Yogvir,Yuvakrit,Bhavkrit,Bijvir,Brahmvir,Chaitvir,Charuvir,Chittvir,Darpvir,Devakrit,Dhankrit,Divakrit,Gajavir,Ganvir,Giriraj,Gunakrit,Harikrit,Himvir,Indrakrit`.split(","),
+  i40: `Jayvir,Jnankrit,Kalpvir,Karankrit,Kavikrit,Keertivir,Kishanvir,Krishvir,Kumarvir,Lajvir,Mahavkrit,Makarvir,Mativir,Medhvir,Mitrakrit,Nabhovir,Nandvir,Nilkrit,Omakrit,Parmvir,Pavkrit,Pitrakrit,Pranvir,Pritvir,Pujvir,Rachnavir,Ratnvir,Rushivir,Sahvir,Santvir,Sarvvir,Shivkrit,Sukrit,Sunakrit,Tejavir,Udayvir,Umavir,Vayvir,Vidhivir,Vimalkrit`.split(","),
+  i41: `Vishvir,Yashvir,Avrant,Avkant,Avdhan,Avrish,Avlav,Avkesh,Avdip,Avmesh,Avnesh,Avsher,Arkrit,Arnir,Ardip,Arpav,Arsan,Artan,Arlav,Arvesh,Arsher,Armit,Amnir,Amsan,Amtan,Amnesh,Amsher,Amdip,Admir,Akmit,Atrak,Aymir,Aylav,Devmit,Devlav,Devsan,Devtan,Harmit,Harlav,Manlav`.split(","),
+  i42: `Mantan,Mansan,Navlav,Navtan,Navmit,Navdip,Rajlav,Rajtan,Rajmit,Rajdip,Sarnir,Sarkrit,Sarlav,Sarmit,Vedlav,Vedtan,Vedmit,Veddip,Kaltan,Sunav,Sunir,Sulav,Sudan,Sutan,Jaykrit,Jaylav,Jaytan,Jayraj,Jaynav,Avirit,Avurit,Avarit,Avinrit,Avunrit,Avarrit,Avinit,Avunit,Avanit,Avinnit,Avunnit`.split(","),
+  i43: `Avarnit,Avimit,Avumit,Avamit,Avinmit,Avunmit,Avarmit,Avidev,Avudev,Avadev,Avindev,Avundev,Avardev,Avuraj,Avaraj,Avinraj,Avunraj,Avarraj,Avivir,Avuvir,Avavir,Avinvir,Avunvir,Avarvir,Avinav,Avunav,Avanav,Avinnav,Avunnav,Avarnav,Avidhar,Avudhar,Avadhar,Avindhar,Avundhar,Avardhar,Avujit,Avajit,Avinjit,Avunjit`.split(","),
+  i44: `Avarjit,Avikrit,Avukrit,Avakrit,Avinkrit,Avunkrit,Avarkrit,Avurup,Avarup,Avinrup,Avunrup,Avarrup,Avivar,Avuvar,Avavar,Avinvar,Avunvar,Avarvar,Avutav,Avatav,Avintav,Avuntav,Avartav,Avivin,Avuvin,Avavin,Avinvin,Avunvin,Avarvin,Aviram,Avuram,Avaram,Avinram,Avunram,Avarram,Aviman,Avuman,Avaman,Avinman,Avunman`.split(","),
+  i45: `Avarman,Avipal,Avupal,Avapal,Avinpal,Avunpal,Avarpal,Avivan,Avuvan,Avavan,Avinvan,Avunvan,Avarvan,Aviek,Avuek,Avaek,Avinek,Avunek,Avarek,Aviant,Avuant,Avinant,Avunant,Avarant,Aviish,Avuish,Avaish,Avinish,Avunish`.split(","),
+  a0: `Amina,Amir,Ashar,Rafi,Rehan,Adil,Adnan,Ahsan,Akram,Alim,Anwar,Arif,Ashraf,Azim,Aziz,Bashir,Bilal,Cyrus,Dara,Ehsan,Faisal,Faraz,Farid,Hafiz,Hamid,Hamza,Haris,Hasan,Idris,Imran,Iqbal,Jalal,Junaid,Kamil,Karim,Khalid,Khalil,Latif,Luqman,Mahir`.split(","),
+  a1: `Malik,Mansur,Mazin,Mirza,Murad,Nabil,Nadir,Nasim,Navid,Omid,Qadir,Rahim,Rafiq,Rashid,Saif,Salim,Samir,Sharif,Sultan,Tahir,Tariq,Wahid,Yusuf,Zafar,Zahir,Zaid`.split(","),
+  g0: `Kenzo,Anthon,Ragnar,Rowan,Valrik,Alaric,Ambrose,Anders,Anton,Arturo,Aurelio,Bastian,Benicio,Bjorn,Blaise,Bram,Bruno,Callum,Caspian,Cedric,Cillian,Corbin,Cormac,Cosimo,Dante,Dashiel,Declan,Dimitri,Dorian,Eero,Elio,Emil,Enzo,Evander,Fabian,Felix,Florian,Flynn,Gideon,Griffin`.split(","),
+  g1: `Hadrian,Halcyon,Hector,Henrik,Holden,Hugo,Iker,Inigo,Ivar,Jasper,Joaquin,Kai,Kairo,Kellan,Kieran,Lars,Leander,Lennox,Leon,Lionel,Lorcan,Luca,Lucian,Magnus,Marcel,Marco,Matteo,Milo,Miro,Nico,Nikolai,Nils,Noel,Odin,Orion,Oscar,Otto,Pascal,Percival,Rafael`.split(","),
+  g2: `Rainer,Raphael,Remy,Ren,Renzo,Rio,Roland,Roman,Ronan,Saxon,Silas,Silvio,Soren,Stellan,Thane,Theo,Tobias,Tristan,Viggo,Viktor,Willem,Xavi,Yohan,Zander,Zen`.split(","),
 };
 
 function buildNameDB() {
@@ -158,60 +79,57 @@ function buildNameDB() {
     });
   };
 
-  addNames(RAW_NAMES.iA, "Indian", true);
-  addNames(RAW_NAMES.iN, "Indian", false);
-  addNames(RAW_NAMES.aA, "Arabic/Persian", true);
-  addNames(RAW_NAMES.aN, "Arabic/Persian", false);
-  addNames(RAW_NAMES.fA, "African", true);
-  addNames(RAW_NAMES.fN, "African", false);
-  addNames(RAW_NAMES.kN, "Korean", false);
-  addNames(RAW_NAMES.gA, "Global", true);
-  addNames(RAW_NAMES.gN, "Global", false);
-  // Supplementary
-  addNames(RAW_NAMES.iA2, "Indian", true);
-  addNames(RAW_NAMES.iN2, "Indian", false);
-  addNames(RAW_NAMES.gA2, "Global", true);
-  addNames(RAW_NAMES.gN2, "Global", false);
-  addNames(RAW_NAMES.aA2, "Arabic/Persian", true);
-  addNames(RAW_NAMES.aN2, "Arabic/Persian", false);
-  addNames(RAW_NAMES.extraA, "Global", true);
-  addNames(RAW_NAMES.extraN, "Global", false);
-  addNames(RAW_NAMES.iA3, "Indian", true);
-  addNames(RAW_NAMES.iA4, "Indian", true);
-  // Expansion batch 1
-  addNames(RAW_NAMES.iA5, "Indian", true);
-  addNames(RAW_NAMES.iN5, "Indian", false);
-  addNames(RAW_NAMES.aA5, "Arabic/Persian", true);
-  addNames(RAW_NAMES.aN5, "Arabic/Persian", false);
-  addNames(RAW_NAMES.fN5, "African", false);
-  addNames(RAW_NAMES.gA5, "Global", true);
-  addNames(RAW_NAMES.gN5, "Global", false);
-  addNames(RAW_NAMES.kN5, "Korean", false);
-  // Expansion batch 2
-  addNames(RAW_NAMES.iA6, "Indian", true);
-  // Final batch
-  addNames(RAW_NAMES.creativeA, "Creative", true);
-  addNames(RAW_NAMES.creativeN, "Creative", false);
-  // Replacement batch (short names only)
-  addNames(RAW_NAMES.repIA, "Indian", true);
-  addNames(RAW_NAMES.repIN, "Indian", false);
-  addNames(RAW_NAMES.repAP, "Arabic/Persian", false);
-  addNames(RAW_NAMES.repAA, "Arabic/Persian", true);
-  addNames(RAW_NAMES.repAF, "African", false);
-  addNames(RAW_NAMES.repAFA, "African", true);
-  addNames(RAW_NAMES.repGN, "Global", false);
-  addNames(RAW_NAMES.repGA, "Global", true);
-  addNames(RAW_NAMES.repKN, "Korean", false);
-  // Extra short names
-  addNames(RAW_NAMES.xIA, "Indian", true);
-  addNames(RAW_NAMES.xIN, "Indian", false);
-  addNames(RAW_NAMES.xAP, "Arabic/Persian", false);
-  addNames(RAW_NAMES.xGN, "Global", false);
-  // Final top-up
-  addNames(RAW_NAMES.topIA, "Indian", true);
-  addNames(RAW_NAMES.topIN, "Indian", false);
-  addNames(RAW_NAMES.topAP, "Arabic/Persian", false);
-  addNames(RAW_NAMES.topGN, "Global", false);
+  addNames(RAW_NAMES.i0, "Indian", true);
+  addNames(RAW_NAMES.i1, "Indian", true);
+  addNames(RAW_NAMES.i2, "Indian", true);
+  addNames(RAW_NAMES.i3, "Indian", true);
+  addNames(RAW_NAMES.i4, "Indian", true);
+  addNames(RAW_NAMES.i5, "Indian", true);
+  addNames(RAW_NAMES.i6, "Indian", false);
+  addNames(RAW_NAMES.i7, "Indian", false);
+  addNames(RAW_NAMES.i8, "Indian", false);
+  addNames(RAW_NAMES.i9, "Indian", false);
+  addNames(RAW_NAMES.i10, "Indian", false);
+  addNames(RAW_NAMES.i11, "Indian", false);
+  addNames(RAW_NAMES.i12, "Indian", true);
+  addNames(RAW_NAMES.i13, "Indian", true);
+  addNames(RAW_NAMES.i14, "Indian", true);
+  addNames(RAW_NAMES.i15, "Indian", true);
+  addNames(RAW_NAMES.i16, "Indian", false);
+  addNames(RAW_NAMES.i17, "Indian", false);
+  addNames(RAW_NAMES.i18, "Indian", true);
+  addNames(RAW_NAMES.i19, "Indian", false);
+  addNames(RAW_NAMES.i20, "Indian", false);
+  addNames(RAW_NAMES.i21, "Indian", false);
+  addNames(RAW_NAMES.i22, "Indian", true);
+  addNames(RAW_NAMES.i23, "Indian", true);
+  addNames(RAW_NAMES.i24, "Indian", true);
+  addNames(RAW_NAMES.i25, "Indian", true);
+  addNames(RAW_NAMES.i26, "Indian", true);
+  addNames(RAW_NAMES.i27, "Indian", true);
+  addNames(RAW_NAMES.i28, "Indian", true);
+  addNames(RAW_NAMES.i29, "Indian", true);
+  addNames(RAW_NAMES.i30, "Indian", false);
+  addNames(RAW_NAMES.i31, "Indian", false);
+  addNames(RAW_NAMES.i32, "Indian", false);
+  addNames(RAW_NAMES.i33, "Indian", false);
+  addNames(RAW_NAMES.i34, "Indian", false);
+  addNames(RAW_NAMES.i35, "Indian", false);
+  addNames(RAW_NAMES.i36, "Indian", false);
+  addNames(RAW_NAMES.i37, "Indian", false);
+  addNames(RAW_NAMES.i38, "Indian", false);
+  addNames(RAW_NAMES.i39, "Indian", false);
+  addNames(RAW_NAMES.i40, "Indian", false);
+  addNames(RAW_NAMES.i41, "Indian", true);
+  addNames(RAW_NAMES.i42, "Indian", true);
+  addNames(RAW_NAMES.i43, "Indian", true);
+  addNames(RAW_NAMES.i44, "Indian", true);
+  addNames(RAW_NAMES.i45, "Indian", true);
+  addNames(RAW_NAMES.a0, "Arabic/Persian", true);
+  addNames(RAW_NAMES.a1, "Arabic/Persian", false);
+  addNames(RAW_NAMES.g0, "Global", true);
+  addNames(RAW_NAMES.g1, "Global", false);
+  addNames(RAW_NAMES.g2, "Global", false);
 
   return names;
 }
@@ -458,7 +376,7 @@ export default function NameMyBaby() {
     (async () => {
       try {
         // Version check — bump this to force a fresh start
-        const DB_VERSION = 2;
+        const DB_VERSION = 3;
         const storedVersion = await loadData("nmb:version", 0);
         
         if (storedVersion < DB_VERSION) {
@@ -616,6 +534,16 @@ export default function NameMyBaby() {
     await saveData("nmb:favorites", [...newFavs]);
   };
 
+  const handleDeleteVote = async (name) => {
+    const newRatings = { ...ratings };
+    delete newRatings[name];
+    const newTotal = Math.max(0, totalVotes - (ratings[name] || 0));
+    setRatings(newRatings);
+    setTotalVotes(newTotal);
+    await saveData("nmb:ratings", newRatings);
+    await saveData("nmb:totalVotes", newTotal);
+  };
+
   const handleReset = async () => {
     if (!confirm("Reset all rankings and start fresh?")) return;
     setRatings({});
@@ -639,7 +567,7 @@ export default function NameMyBaby() {
     .sort((a, b) => b[1] - a[1])
     .map(([name, votes], i) => {
       const info = ALL_NAMES.find(n => n.name === name);
-      return { name, votes, rank: i + 1, origin: info?.origin || "Unknown", traits: info?.traits || [], comparisons: comparisons[name] || 0, isFavorite: favorites.has(name) };
+      return { name, votes, rank: i + 1, origin: info?.origin || "Unknown", traits: info?.traits || [], comparisons: comparisons[name] || 0 };
     });
 
   const filteredRanked = searchQuery
@@ -673,7 +601,7 @@ export default function NameMyBaby() {
           Name My Baby
         </div>
         <div style={styles.navSubtitle}>
-          {tab === "discover" ? "Discover" : tab === "rankings" ? "Rankings" : "Favorites"}
+          {tab === "discover" ? "Discover" : "Rankings"}
         </div>
         {tab === "discover" && (
           <button style={styles.navBtn} onClick={() => setShowStats(!showStats)}>
@@ -701,10 +629,6 @@ export default function NameMyBaby() {
             <span style={styles.statLabel}>Names Skipped</span>
             <span style={styles.statValue}>{skippedNames.size}</span>
           </div>
-          <div style={styles.statRow}>
-            <span style={styles.statLabel}>Favorites</span>
-            <span style={styles.statValue}>{favorites.size}</span>
-          </div>
           <div style={{...styles.statRow, borderBottom: "none"}}>
             <span style={styles.statLabel}>Show Full Name</span>
             <button
@@ -726,11 +650,7 @@ export default function NameMyBaby() {
             selected={selected}
             animating={animating}
             onSelect={handleSelect}
-            onSkipAll={handleSkipAll}
             onDislikeAll={handleDislikeAll}
-            onNeverShow={handleNeverShow}
-            onToggleFavorite={toggleFavorite}
-            favorites={favorites}
             showFullName={showFullName}
             totalVotes={totalVotes}
             topName={rankedNames[0]}
@@ -741,22 +661,11 @@ export default function NameMyBaby() {
             rankedNames={filteredRanked}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
-            favorites={favorites}
-            onToggleFavorite={toggleFavorite}
             totalVotes={totalVotes}
             onReset={handleReset}
+            onDeleteVote={handleDeleteVote}
             namesSeen={Object.keys(comparisons).length}
             namesTotal={ALL_NAMES.length}
-          />
-        )}
-        {tab === "favorites" && (
-          <FavoritesTab
-            favorites={favorites}
-            ratings={ratings}
-            comparisons={comparisons}
-            allNames={ALL_NAMES}
-            onToggleFavorite={toggleFavorite}
-            showFullName={showFullName}
           />
         )}
       </div>
@@ -766,7 +675,6 @@ export default function NameMyBaby() {
         {[
           { id: "discover", icon: "✦", label: "Discover" },
           { id: "rankings", icon: "📊", label: "Rankings" },
-          { id: "favorites", icon: "♡", label: "Favorites" },
         ].map(t => (
           <button
             key={t.id}
@@ -785,9 +693,7 @@ export default function NameMyBaby() {
 // ============================================================
 // DISCOVER TAB
 // ============================================================
-function DiscoverTab({ currentFive, selected, animating, onSelect, onSkipAll, onDislikeAll, onNeverShow, onToggleFavorite, favorites, showFullName, totalVotes, topName }) {
-  const [swipedName, setSwipedName] = useState(null);
-
+function DiscoverTab({ currentFive, selected, animating, onSelect, onDislikeAll, showFullName, totalVotes, topName }) {
   return (
     <div style={styles.discoverContainer}>
       <div style={styles.promptText}>
@@ -802,76 +708,51 @@ function DiscoverTab({ currentFive, selected, animating, onSelect, onSkipAll, on
         {currentFive.map((n, i) => {
           const isSelected = selected === n.name;
           const isNotSelected = selected && !isSelected;
-          const isFav = favorites.has(n.name);
-          const isOpen = swipedName === n.name;
 
           return (
-            <div key={`${n.name}-${i}`} style={styles.cardWrapper}>
-              <div
-                style={{
-                  ...styles.nameCard,
-                  transform: isSelected ? "scale(1.03)" : isNotSelected ? "scale(0.96)" : "scale(1)",
-                  opacity: isNotSelected ? 0.4 : 1,
-                  background: isSelected ? "linear-gradient(135deg, #007AFF 0%, #5856D6 100%)" : "#fff",
-                  color: isSelected ? "#fff" : "#1C1C1E",
-                  borderColor: isSelected ? "transparent" : "#E5E5EA",
-                  transition: "all 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
-                }}
-                onClick={() => !animating && onSelect(n.name)}
-              >
-                <div style={styles.cardContent}>
-                  <div style={styles.nameText}>{n.name}</div>
-                  {showFullName && (
-                    <div style={{...styles.fullNameText, color: isSelected ? "rgba(255,255,255,0.7)" : "#8E8E93"}}>
-                      {n.name} Chikahisa Reddy
-                    </div>
-                  )}
-                  <div style={{
-                    ...styles.originBadge,
-                    background: isSelected ? "rgba(255,255,255,0.2)" : originColor(n.origin).bg,
-                    color: isSelected ? "#fff" : originColor(n.origin).text,
-                  }}>
-                    {n.origin}
-                  </div>
-                  <div style={styles.traitRow}>
-                    {(n.traits || []).map((t, ti) => (
-                      <span key={ti} style={{
-                        ...styles.traitChip,
-                        background: isSelected ? "rgba(255,255,255,0.15)" : "#F2F2F7",
-                        color: isSelected ? "rgba(255,255,255,0.8)" : "#636366",
-                      }}>{t}</span>
-                    ))}
-                  </div>
+            <div
+              key={`${n.name}-${i}`}
+              style={{
+                ...styles.nameCard,
+                transform: isSelected ? "scale(1.02)" : isNotSelected ? "scale(0.97)" : "scale(1)",
+                opacity: isNotSelected ? 0.4 : 1,
+                background: isSelected ? "linear-gradient(135deg, #007AFF 0%, #5856D6 100%)" : "#fff",
+                color: isSelected ? "#fff" : "#1C1C1E",
+                borderColor: isSelected ? "transparent" : "#E5E5EA",
+                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+              }}
+              onClick={() => !animating && onSelect(n.name)}
+            >
+              <div style={styles.nameText}>{n.name}</div>
+              {showFullName && (
+                <div style={{...styles.fullNameText, color: isSelected ? "rgba(255,255,255,0.7)" : "#8E8E93"}}>
+                  {n.name} Chikahisa Reddy
                 </div>
-                <div style={styles.cardActions}>
-                  <button
-                    style={{...styles.iconBtn, color: isSelected ? "#fff" : isFav ? "#FF3B30" : "#C7C7CC"}}
-                    onClick={(e) => { e.stopPropagation(); onToggleFavorite(n.name); }}
-                  >
-                    {isFav ? "♥" : "♡"}
-                  </button>
-                  <button
-                    style={{...styles.iconBtn, color: isSelected ? "rgba(255,255,255,0.5)" : "#C7C7CC", fontSize: 14}}
-                    onClick={(e) => { e.stopPropagation(); onNeverShow(n.name); }}
-                    title="Never show again"
-                  >
-                    ✕
-                  </button>
-                </div>
+              )}
+              <div style={styles.cardMeta}>
+                <span style={{
+                  ...styles.originBadgeInline,
+                  background: isSelected ? "rgba(255,255,255,0.2)" : originColor(n.origin).bg,
+                  color: isSelected ? "#fff" : originColor(n.origin).text,
+                }}>
+                  {n.origin}
+                </span>
+                {(n.traits || []).slice(0, 3).map((t, ti) => (
+                  <span key={ti} style={{
+                    ...styles.traitChipInline,
+                    background: isSelected ? "rgba(255,255,255,0.15)" : "#F2F2F7",
+                    color: isSelected ? "rgba(255,255,255,0.8)" : "#636366",
+                  }}>{t}</span>
+                ))}
               </div>
             </div>
           );
         })}
       </div>
 
-      <div style={styles.bottomButtons}>
-        <button style={styles.dislikeBtn} onClick={onDislikeAll} disabled={animating}>
-          👎 I Don't Like Any of These
-        </button>
-        <button style={styles.skipBtn} onClick={onSkipAll} disabled={animating}>
-          Skip — Show 5 New Names
-        </button>
-      </div>
+      <button style={styles.dislikeBtn} onClick={onDislikeAll} disabled={animating}>
+        👎 I Don't Like Any of These
+      </button>
     </div>
   );
 }
@@ -879,7 +760,7 @@ function DiscoverTab({ currentFive, selected, animating, onSelect, onSkipAll, on
 // ============================================================
 // RANKINGS TAB
 // ============================================================
-function RankingsTab({ rankedNames, searchQuery, setSearchQuery, favorites, onToggleFavorite, totalVotes, onReset, namesSeen, namesTotal }) {
+function RankingsTab({ rankedNames, searchQuery, setSearchQuery, totalVotes, onReset, onDeleteVote, namesSeen, namesTotal }) {
   const maxVotes = rankedNames.length > 0 ? Math.max(...rankedNames.map(n => n.votes)) : 1;
   const pctComplete = namesTotal > 0 ? Math.round((namesSeen / namesTotal) * 100) : 0;
   const [showTraits, setShowTraits] = useState(true);
@@ -989,7 +870,6 @@ function RankingsTab({ rankedNames, searchQuery, setSearchQuery, favorites, onTo
               <div style={styles.rankDetails}>
                 <div style={styles.rankName}>
                   {n.name}
-                  {n.isFavorite && <span style={{color: "#FF3B30", marginLeft: 4}}>♥</span>}
                 </div>
                 <div style={styles.rankBar}>
                   <div style={{...styles.rankBarFill, width: `${barWidth}%`}} />
@@ -1001,10 +881,11 @@ function RankingsTab({ rankedNames, searchQuery, setSearchQuery, favorites, onTo
                 </div>
               </div>
               <button
-                style={{...styles.iconBtn, color: n.isFavorite ? "#FF3B30" : "#C7C7CC"}}
-                onClick={() => onToggleFavorite(n.name)}
+                style={styles.deleteBtn}
+                onClick={() => onDeleteVote(n.name)}
+                title="Remove votes"
               >
-                {n.isFavorite ? "♥" : "♡"}
+                ✕
               </button>
             </div>
           );
@@ -1021,53 +902,6 @@ function RankingsTab({ rankedNames, searchQuery, setSearchQuery, favorites, onTo
         <button style={styles.resetRankingBtn} onClick={onReset}>
           Reset All Rankings
         </button>
-      )}
-    </div>
-  );
-}
-
-// ============================================================
-// FAVORITES TAB
-// ============================================================
-function FavoritesTab({ favorites, ratings, comparisons, allNames, onToggleFavorite, showFullName }) {
-  const favList = allNames
-    .filter(n => favorites.has(n.name))
-    .map(n => ({
-      ...n,
-      votes: ratings[n.name] || 0,
-      comparisons: comparisons[n.name] || 0,
-    }))
-    .sort((a, b) => b.votes - a.votes);
-
-  return (
-    <div style={styles.favContainer}>
-      {favList.length === 0 ? (
-        <div style={styles.emptyState}>
-          <div style={{fontSize: 48, marginBottom: 16}}>♡</div>
-          <div style={{color: "#8E8E93", fontSize: 15}}>Tap the heart on any name to save it here</div>
-        </div>
-      ) : (
-        <>
-          <div style={styles.favCount}>{favList.length} favorite{favList.length !== 1 ? "s" : ""}</div>
-          {favList.map((n) => (
-            <div key={n.name} style={styles.favCard}>
-              <div>
-                <div style={styles.favName}>{n.name}</div>
-                {showFullName && <div style={styles.favFullName}>{n.name} Chikahisa Reddy</div>}
-                <div style={styles.favMeta}>
-                  <span style={{...styles.originBadge, ...originColor(n.origin)}}>{n.origin}</span>
-                  <span style={{color: "#8E8E93", fontSize: 12, marginLeft: 8}}>{n.votes} {n.votes === 1 ? "vote" : "votes"}</span>
-                </div>
-              </div>
-              <button
-                style={{...styles.iconBtn, color: "#FF3B30", fontSize: 22}}
-                onClick={() => onToggleFavorite(n.name)}
-              >
-                ♥
-              </button>
-            </div>
-          ))}
-        </>
       )}
     </div>
   );
@@ -1111,20 +945,20 @@ const styles = {
   loadingIcon: { fontSize: 64, marginBottom: 16 },
   loadingText: { fontSize: 28, fontWeight: 700, color: "#1C1C1E", letterSpacing: -0.5 },
   loadingSubtext: { fontSize: 15, color: "#8E8E93", marginTop: 8 },
-  statusBar: { height: 12, background: "#F2F2F7" },
+  statusBar: { height: 6, background: "#F2F2F7" },
   navBar: {
     position: "sticky", top: 0, zIndex: 100,
-    padding: "8px 20px 12px", background: "#F2F2F7",
+    padding: "4px 16px 6px", background: "#F2F2F7",
   },
-  navTitle: { fontSize: 28, fontWeight: 700, color: "#1C1C1E", letterSpacing: -0.5 },
-  navSubtitle: { fontSize: 13, fontWeight: 500, color: "#8E8E93", marginTop: 2 },
+  navTitle: { fontSize: 24, fontWeight: 700, color: "#1C1C1E", letterSpacing: -0.5 },
+  navSubtitle: { fontSize: 11, fontWeight: 500, color: "#8E8E93", marginTop: 1 },
   navBtn: {
     background: "none", border: "none", fontSize: 22, color: "#007AFF", cursor: "pointer",
     padding: "8px", borderRadius: 20, width: 40, height: 40,
     display: "flex", alignItems: "center", justifyContent: "center",
     position: "absolute", right: 20, top: 8,
   },
-  content: { flex: 1, paddingBottom: 90 },
+  content: { flex: 1, paddingBottom: 70 },
 
   // Stats Panel
   statsPanel: {
@@ -1153,55 +987,44 @@ const styles = {
   },
 
   // Discover Tab
-  discoverContainer: { padding: "0 16px" },
+  discoverContainer: { padding: "0 12px" },
   promptText: {
-    textAlign: "center", fontSize: 17, fontWeight: 600, color: "#1C1C1E",
-    marginBottom: 4,
+    textAlign: "center", fontSize: 15, fontWeight: 600, color: "#1C1C1E",
+    marginBottom: 2,
   },
   voteCounter: {
-    textAlign: "center", fontSize: 13, color: "#8E8E93", marginBottom: 16,
+    textAlign: "center", fontSize: 12, color: "#8E8E93", marginBottom: 8,
   },
-  nameCards: { display: "flex", flexDirection: "column", gap: 10 },
-  cardWrapper: { position: "relative" },
+  nameCards: { display: "flex", flexDirection: "column", gap: 6 },
   nameCard: {
-    display: "flex", alignItems: "center", justifyContent: "space-between",
-    padding: "16px 16px", borderRadius: 14, cursor: "pointer",
+    display: "flex", flexDirection: "column",
+    padding: "10px 14px", borderRadius: 12, cursor: "pointer",
     border: "0.5px solid #E5E5EA",
-    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+    boxShadow: "0 1px 2px rgba(0,0,0,0.03)",
   },
-  cardContent: { flex: 1 },
-  nameText: { fontSize: 22, fontWeight: 600, letterSpacing: -0.3 },
-  fullNameText: { fontSize: 13, marginTop: 3 },
-  originBadge: {
-    display: "inline-block", fontSize: 11, fontWeight: 500,
-    padding: "3px 8px", borderRadius: 6, marginTop: 6,
+  nameText: { fontSize: 18, fontWeight: 600, letterSpacing: -0.3 },
+  fullNameText: { fontSize: 11, marginTop: 1 },
+  cardMeta: {
+    display: "flex", flexWrap: "wrap", gap: 4, marginTop: 4, alignItems: "center",
   },
-  traitRow: {
-    display: "flex", flexWrap: "wrap", gap: 4, marginTop: 6,
+  originBadgeInline: {
+    display: "inline-block", fontSize: 10, fontWeight: 500,
+    padding: "2px 7px", borderRadius: 6,
   },
-  traitChip: {
-    fontSize: 10, fontWeight: 500, padding: "2px 7px", borderRadius: 10,
+  traitChipInline: {
+    fontSize: 9, fontWeight: 500, padding: "1px 6px", borderRadius: 8,
     whiteSpace: "nowrap",
   },
-  cardActions: { display: "flex", flexDirection: "column", gap: 8, alignItems: "center" },
-  iconBtn: {
-    background: "none", border: "none", cursor: "pointer", fontSize: 20,
-    padding: 4, lineHeight: 1,
-  },
-  bottomButtons: {
-    display: "flex", flexDirection: "column", gap: 10, marginTop: 16,
-  },
   dislikeBtn: {
-    display: "block", width: "100%", padding: "14px",
-    background: "rgba(255,59,48,0.08)", border: "1.5px solid #FF3B30", borderRadius: 14,
-    color: "#FF3B30", fontSize: 15, fontWeight: 600, cursor: "pointer",
-    textAlign: "center",
+    display: "block", width: "100%", padding: "11px",
+    background: "rgba(255,59,48,0.08)", border: "1.5px solid #FF3B30", borderRadius: 12,
+    color: "#FF3B30", fontSize: 14, fontWeight: 600, cursor: "pointer",
+    textAlign: "center", marginTop: 8,
   },
-  skipBtn: {
-    display: "block", width: "100%", padding: "14px",
-    background: "none", border: "1.5px solid #007AFF", borderRadius: 14,
-    color: "#007AFF", fontSize: 15, fontWeight: 600, cursor: "pointer",
-    textAlign: "center",
+  deleteBtn: {
+    background: "none", border: "none", cursor: "pointer",
+    fontSize: 16, color: "#C7C7CC", padding: "4px 8px", lineHeight: 1,
+    flexShrink: 0,
   },
   resetRankingBtn: {
     display: "block", width: "100%", padding: "14px", marginTop: 20,
@@ -1311,17 +1134,6 @@ const styles = {
   },
   rankMeta: { fontSize: 12, color: "#8E8E93" },
 
-  // Favorites Tab
-  favContainer: { padding: "0 16px" },
-  favCount: { fontSize: 13, color: "#8E8E93", marginBottom: 12, textAlign: "center" },
-  favCard: {
-    display: "flex", alignItems: "center", justifyContent: "space-between",
-    background: "#fff", borderRadius: 14, padding: "16px",
-    marginBottom: 10, boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
-  },
-  favName: { fontSize: 20, fontWeight: 600, color: "#1C1C1E" },
-  favFullName: { fontSize: 13, color: "#8E8E93", marginTop: 2 },
-  favMeta: { marginTop: 8, display: "flex", alignItems: "center" },
   emptyState: {
     textAlign: "center", padding: "60px 20px",
   },
@@ -1333,7 +1145,7 @@ const styles = {
     display: "flex", justifyContent: "space-around",
     background: "rgba(249,249,249,0.94)", backdropFilter: "blur(20px)",
     WebkitBackdropFilter: "blur(20px)",
-    borderTop: "0.5px solid #C6C6C8", padding: "8px 0 28px", zIndex: 200,
+    borderTop: "0.5px solid #C6C6C8", padding: "6px 0 22px", zIndex: 200,
   },
   tabItem: {
     display: "flex", flexDirection: "column", alignItems: "center",
