@@ -7,13 +7,13 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, get, onValue, remove } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD2oyA6Pv1s6fjUeKTRajIO4jOaxj2uX-4",
-  authDomain: "name-my-baby-55061.firebaseapp.com",
-  databaseURL: "https://name-my-baby-55061-default-rtdb.firebaseio.com",
-  projectId: "name-my-baby-55061",
-  storageBucket: "name-my-baby-55061.firebasestorage.app",
-  messagingSenderId: "266296336757",
-  appId: "1:266296336757:web:b54ad98bf65202d378b33c",
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID",
 };
 
 const app = initializeApp(firebaseConfig);

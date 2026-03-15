@@ -391,6 +391,31 @@ export default function NameMyBaby() {
 
     // Initial load
     (async () => {
+      // Version check — bump this to force a fresh start
+      const DB_VERSION = 2;
+      const storedVersion = await loadData("nmb:version", 0);
+      
+      if (storedVersion < DB_VERSION) {
+        // Clear everything for a fresh start
+        await saveData("nmb:ratings", {});
+        await saveData("nmb:comparisons", {});
+        await saveData("nmb:totalVotes", 0);
+        await saveData("nmb:favorites", []);
+        await saveData("nmb:skipped", []);
+        await saveData("nmb:disliked", []);
+        await saveData("nmb:version", DB_VERSION);
+
+        setRatings({});
+        setComparisons({});
+        setTotalVotes(0);
+        setFavorites(new Set());
+        setSkippedNames(new Set());
+        setDislikedNames(new Set());
+        setCurrentFive(pickFive({}, {}, ALL_NAMES, new Set()));
+        setLoading(false);
+        return;
+      }
+
       let r = await loadData("nmb:ratings", {});
       const c = await loadData("nmb:comparisons", {});
       const v = await loadData("nmb:totalVotes", 0);
@@ -398,24 +423,15 @@ export default function NameMyBaby() {
       const s = await loadData("nmb:skipped", []);
       const d = await loadData("nmb:disliked", []);
 
-      // Migrate: clean out old ELO-style data
-      const hasOldData = Object.values(r).some(val => val >= 100);
-      if (hasOldData) {
-        r = {};
-        await saveData("nmb:ratings", r);
-        await saveData("nmb:comparisons", {});
-        await saveData("nmb:totalVotes", 0);
-      }
-
       setRatings(r);
-      setComparisons(hasOldData ? {} : c);
-      setTotalVotes(hasOldData ? 0 : v);
+      setComparisons(c);
+      setTotalVotes(v);
       setFavorites(new Set(f));
       setSkippedNames(new Set(s));
       setDislikedNames(new Set(d));
 
       const available = ALL_NAMES.filter(n => !new Set(s).has(n.name));
-      setCurrentFive(pickFive(r, hasOldData ? {} : c, available, new Set(d)));
+      setCurrentFive(pickFive(r, c, available, new Set(d)));
       setLoading(false);
     })();
 
@@ -437,31 +453,41 @@ export default function NameMyBaby() {
     return pickFive(r || ratings, c || comparisons, available, d || dislikedNames);
   }, [ratings, comparisons, dislikedNames]);
 
+  // Helper: mark names as seen in comparisons
+  const markSeen = async (names, existingComparisons) => {
+    const newComparisons = { ...existingComparisons };
+    let changed = false;
+    names.forEach(n => {
+      const nm = typeof n === "string" ? n : n.name;
+      if (!newComparisons[nm]) { newComparisons[nm] = 0; changed = true; }
+      newComparisons[nm]++;
+    });
+    if (changed || names.length > 0) {
+      setComparisons(newComparisons);
+      await saveData("nmb:comparisons", newComparisons);
+    }
+    return newComparisons;
+  };
+
   const handleSelect = async (name) => {
     if (animating) return;
     setSelected(name);
     setAnimating(true);
 
-    // Simple scoring: winner gets +1 point, losers get 0
+    // Mark all 5 as seen
+    const newComparisons = await markSeen(currentFive, comparisons);
+
+    // Winner gets +1 point
     const newRatings = { ...ratings };
-    const newComparisons = { ...comparisons };
-    
-    currentFive.forEach(n => {
-      if (!newComparisons[n.name]) newComparisons[n.name] = 0;
-      newComparisons[n.name]++;
-    });
-    
     if (!newRatings[name]) newRatings[name] = 0;
     newRatings[name] += 1;
 
     const newTotal = totalVotes + 1;
     
     setRatings(newRatings);
-    setComparisons(newComparisons);
     setTotalVotes(newTotal);
 
     await saveData("nmb:ratings", newRatings);
-    await saveData("nmb:comparisons", newComparisons);
     await saveData("nmb:totalVotes", newTotal);
 
     setTimeout(() => {
@@ -471,21 +497,27 @@ export default function NameMyBaby() {
     }, 600);
   };
 
-  const handleSkipAll = () => {
+  const handleSkipAll = async () => {
     if (animating) return;
-    setCurrentFive(getNextFive(ratings, comparisons, skippedNames));
+    // Mark all 5 as seen even though none were voted for
+    const newComparisons = await markSeen(currentFive, comparisons);
+    setCurrentFive(getNextFive(ratings, newComparisons, skippedNames));
   };
 
   const handleDislikeAll = async () => {
     if (animating) return;
-    // Track all 5 names as disliked so they almost never appear again
+    // Mark all 5 as seen
+    const newComparisons = await markSeen(currentFive, comparisons);
+    // Track all 5 as disliked
     const newDisliked = new Set([...dislikedNames, ...currentFive.map(n => n.name)]);
     setDislikedNames(newDisliked);
     await saveData("nmb:disliked", [...newDisliked]);
-    setCurrentFive(getNextFive(ratings, comparisons, skippedNames, newDisliked));
+    setCurrentFive(getNextFive(ratings, newComparisons, skippedNames, newDisliked));
   };
 
   const handleNeverShow = async (name) => {
+    // Mark as seen
+    await markSeen([name], comparisons);
     const newSkipped = new Set([...skippedNames, name]);
     setSkippedNames(newSkipped);
     await saveData("nmb:skipped", [...newSkipped]);
